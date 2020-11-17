@@ -1,0 +1,51 @@
+{
+    "name": "cycle-canceling",
+    "version": "0.1.0",
+    "description": "TypeScript implementation of cycle-canceling algorithm.",
+    "main": "src/index.js",
+    "homepage": "https://github.com/cedoor/cycle-canceling#readme",
+    "repository": "git@github.com:cedoor/cycle-canceling.git",
+    "bugs": {
+        "url": "https://github.com/cedoor/cycle-canceling/issues"
+    },
+    "author": {
+        "name": "Omar Desogus",
+        "email": "me@cedoor.dev",
+        "url": "https://cedoor.dev"
+    },
+    "license": "MIT",
+    "files": [
+        "dist/",
+        "src/",
+        "LICENSE",
+        "README.md"
+    ],
+    "keywords": [
+        "typescript",
+        "cycle-canceling",
+        "implementation",
+        "javascript"
+    ],
+    "scripts": {
+        "lint:fix": "prettier --write 'src/**/*.ts' 'test/**/*.ts' && eslint 'src/**/*.ts' 'test/**/*.ts' --fix",
+        "lint": "eslint 'src/**/*.ts' 'test/**/*.ts'",
+        "test": "mocha --exit --recursive 'test/**/*.test.ts'",
+        "build": "tsc",
+        "watch": "tsc -w"
+    },
+    "devDependencies": {
+        "@types/chai": "4.2.14",
+        "@types/fs-extra": "9.0.4",
+        "@types/mocha": "8.0.4",
+        "@types/node": "14.14.7",
+        "@typescript-eslint/eslint-plugin": "4.8.1",
+        "@typescript-eslint/parser": "4.8.1",
+        "chai": "4.2.0",
+        "eslint": "7.13.0",
+        "eslint-config-prettier": "6.15.0",
+        "mocha": "8.2.1",
+        "prettier": "2.1.2",
+        "ts-node": "9.0.0",
+        "typescript": "4.0.5"
+    }
+}
