@@ -1,5 +1,5 @@
 export class Graph {
-    nodes: Map<number, Node>
+    private nodes: Map<number, Node>
 
     constructor() {
         this.nodes = new Map()
@@ -19,10 +19,10 @@ export class Graph {
         return node
     }
 
-    check(): boolean {
-        for (const node of this.nodes.values()) {
-            for (const arc of node.arcs.values()) {
-                if (!this.nodes.has(arc.head)) {
+    checkIntegrity(): boolean {
+        for (const node of this.nodes) {
+            for (const arc of node[1].getArcs()) {
+                if (!this.nodes.has(arc[1].head)) {
                     return false
                 }
             }
@@ -35,12 +35,17 @@ export class Graph {
 export class Node {
     id: number
     balance: number
-    arcs: Set<Arc> // Outgoing arcs.
+
+    private arcs: Map<number, Arc> // Outgoing arcs.
 
     constructor(id: number, balance: number, arcs: Arc[] = []) {
         this.id = id
         this.balance = balance
-        this.arcs = new Set(arcs)
+        this.arcs = new Map(arcs.map((arc) => [arc.head, arc]))
+    }
+
+    getArcs() {
+        return this.arcs
     }
 }
 
