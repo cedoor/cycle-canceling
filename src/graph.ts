@@ -44,18 +44,42 @@ export class Node {
         this.arcs = new Map(arcs.map((arc) => [arc.head, arc]))
     }
 
+    addArc(head: number, cost: number, capacity: number, maximumCapacity: number) {
+        const arc = new Arc(head, cost, capacity, maximumCapacity)
+
+        this.arcs.set(head, arc)
+    }
+
+    removeArc(head: number) {
+        this.arcs.delete(head)
+    }
+
+    hasArc(head: number): boolean {
+        return this.arcs.has(head)
+    }
+
+    getArc(head: number): Arc {
+        const arc = this.arcs.get(head)
+
+        if (!arc) {
+            throw Error(`Arc with head ${head} does not exists`)
+        }
+
+        return arc
+    }
+
     getArcs() {
         return this.arcs
     }
 }
 
 export class Arc {
+    head: number
     cost: number
     capacity: number
     maximumCapacity: number
-    head: number
 
-    constructor(cost: number, capacity: number, maximumCapacity: number, head: number) {
+    constructor(head: number, cost: number, capacity: number, maximumCapacity: number) {
         this.cost = cost
         this.capacity = capacity
         this.maximumCapacity = maximumCapacity

@@ -5,7 +5,7 @@ import createGraph, { Arc, Graph, Node } from "../src/graph"
 describe("Graph data structure", () => {
     it("Should create a graph with a node", () => {
         const graph = new Graph()
-        const arc = new Arc(2, 4, 5, 2)
+        const arc = new Arc(2, 2, 4, 5)
         const node = new Node(1, 2, [arc])
 
         graph.addNode(node)
