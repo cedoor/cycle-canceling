@@ -4,12 +4,13 @@ import { Graph } from "./graph"
  * Modified version of tho Depth First Search algorithm to identify
  * a specific directed path between a source node and a sink node.
  * The algorithm return an array with the nodes of the path.
+ * O(n + m)
  * @param: graph to visit.
  * @param: sink node of the path.
  * @param: source node of the path.
  * @returns: path between source node and sink node.
  */
-export default function calculatePath(graph: Graph, sourceNode: number, sinkNode: number): number[] {
+export default function calculatePath(graph: Graph, sourceNode: number, sinkNode: number): number[] | undefined {
     // Contains the nodes marked as visited and their parent nodes.
     // Parent nodes are useful for reconstructing the path.
     const visitedNodes = new Map<number, number>()
@@ -49,6 +50,4 @@ export default function calculatePath(graph: Graph, sourceNode: number, sinkNode
             }
         }
     }
-
-    throw Error(`There is not a path between the source node '${sourceNode}' and the sink node '${sinkNode}'`)
 }

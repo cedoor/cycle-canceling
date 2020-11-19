@@ -4,13 +4,12 @@ import createGraph from "../src/graph"
 import calculatePath from "../src/dfs"
 
 describe("Depth First Search algorithms", () => {
-    it("Should throw an error because there is no path between the source and sink nodes", () => {
+    it("Should return undefined because there is no path between the source and sink nodes", () => {
         const graphData = JSON.parse(readFileSync("./data/simpleGraph.json", "utf8"))
         const graph = createGraph(graphData)
+        const path = calculatePath(graph, 1, 5)
 
-        assert.throws(() => {
-            calculatePath(graph, 1, 5)
-        }, Error)
+        assert.deepEqual(path, undefined)
     })
 
     it("Should calculate the correct path between the source and sink nodes", () => {
