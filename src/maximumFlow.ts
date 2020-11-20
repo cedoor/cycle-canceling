@@ -1,22 +1,23 @@
-import calculatePath from "./dfs"
+import calculatePath from "./bfs"
 import { Graph } from "./graph"
 
 /**
- * Ford–Fulkerson algorithm to calculate the maximum flow.
- * O(nm^2)
+ * Edmonds–Karp algorithm to calculate the maximum flow.
+ * O(n * m^2)
  */
 export default function calculateMaximumFlow(graph: Graph, sourceNode: number, sinkNode: number): number {
     let maximumflow = 0
     let path = calculatePath(graph, sourceNode, sinkNode)
 
+    // O(m * (n + n + m))
     while (path) {
-        const minimumCapacity = getMinimumCapacity(graph, path)
+        const minimumCapacity = getMinimumCapacity(graph, path) // O(n)
 
         maximumflow += minimumCapacity
 
-        updateResidualCapacities(graph, path, minimumCapacity)
+        updateResidualCapacities(graph, path, minimumCapacity) // O(n)
 
-        path = calculatePath(graph, sourceNode, sinkNode)
+        path = calculatePath(graph, sourceNode, sinkNode) // O(m)
     }
 
     return maximumflow

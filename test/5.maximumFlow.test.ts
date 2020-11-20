@@ -3,7 +3,7 @@ import { readFileSync } from "fs"
 import createGraph from "../src/graph"
 import calculateMaximumFlow from "../src/maximumFlow"
 
-describe("Maximum flow algorithms", () => {
+describe("Maximum flow algorithm", () => {
     it("Should calculate the correct maximum flow of the graph", () => {
         const graphData = JSON.parse(readFileSync("./data/simpleGraph.json", "utf8"))
         const graph = createGraph(graphData)
