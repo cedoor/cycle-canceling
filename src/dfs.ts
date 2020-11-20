@@ -1,7 +1,7 @@
 import { Graph } from "./graph"
 
 /**
- * Modified version of tho Depth First Search algorithm to identify
+ * Modified version of the Depth-First Search algorithm to identify
  * a specific directed path between a source node and a sink node.
  * The algorithm return an array with the nodes of the path.
  * O(n + m)

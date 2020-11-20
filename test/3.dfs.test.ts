@@ -3,7 +3,7 @@ import { readFileSync } from "fs"
 import createGraph from "../src/graph"
 import calculatePath from "../src/dfs"
 
-describe("Depth First Search algorithms", () => {
+describe("Depth First Search algorithm", () => {
     it("Should return undefined because there is no path between the source and sink nodes", () => {
         const graphData = JSON.parse(readFileSync("./data/simpleGraph.json", "utf8"))
         const graph = createGraph(graphData)
