@@ -28,29 +28,6 @@ describe("Data structures", () => {
             assert.equal(value, 1)
             assert.equal(queue.size(), 1)
         })
-
-        it("Should be faster than an array (with O(n) shift method)", () => {
-            const iterations = 100000
-            const t0 = performance.now()
-
-            const customQueue = new Queue()
-            for (let i = 0; i < iterations; i++) {
-                customQueue.enqueue(i)
-                if (i % 10 === 0) customQueue.dequeue()
-            }
-
-            const t1 = performance.now()
-
-            const arrayQueue = []
-            for (let i = 0; i < iterations; i++) {
-                arrayQueue.push(i)
-                if (i % 10 === 0) arrayQueue.shift()
-            }
-
-            const t2 = performance.now()
-
-            assert.isAtMost((t1 - t0) * 10, t2 - t1)
-        })
     })
 
     describe("Graph", () => {
