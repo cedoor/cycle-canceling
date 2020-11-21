@@ -1,3 +1,8 @@
+/**
+ * Queue data structure allows you to perform FIFO
+ * operations in constant time. JavaScript arrays
+ * have 'shift' and 'push' methods but 'shift' take linear time.
+ */
 export default class Queue {
     private front: number
     private end: number
@@ -44,7 +49,7 @@ export default class Queue {
     }
 
     /**
-     * Returns the item at front of the queue without dequeueing.
+     * Returns the item at front of the queue without dequeuing.
      * @return {any | undefined} The value stored in the item.
      */
     peek(): any | undefined {
