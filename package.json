@@ -31,7 +31,8 @@
         "lint": "eslint 'src/**/*.ts' 'test/**/*.ts'",
         "test": "mocha --exit --recursive 'test/**/*.test.ts'",
         "build": "tsc",
-        "watch": "tsc -w"
+        "watch": "tsc -w",
+        "docs": "typedoc --out docs src --plugin typedoc-plugin-markdown"
     },
     "devDependencies": {
         "@types/chai": "4.2.14",
@@ -46,6 +47,8 @@
         "mocha": "8.2.1",
         "prettier": "2.1.2",
         "ts-node": "9.0.0",
+        "typedoc": "^0.19.2",
+        "typedoc-plugin-markdown": "^3.0.11",
         "typescript": "4.0.5"
     }
 }
