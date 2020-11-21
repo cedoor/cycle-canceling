@@ -16,6 +16,7 @@ export default class Queue {
 
     /**
      * Adds an item to the end of the queue.
+     * Time complexity: O(1).
      * @param {any} The value to store.
      */
     enqueue(value: any) {
@@ -25,6 +26,7 @@ export default class Queue {
 
     /**
      * Removes an item from the queue and return its value.
+     * Time complexity: O(1).
      * @return {any | undefined} The value stored in item.
      */
     dequeue(): any | undefined {
@@ -42,6 +44,7 @@ export default class Queue {
 
     /**
      * Returns the current size of the queue.
+     * Time complexity: O(1).
      * @return {number} Size of the queue.
      */
     size(): number {
@@ -50,6 +53,7 @@ export default class Queue {
 
     /**
      * Returns the item at front of the queue without dequeuing.
+     * Time complexity: O(1).
      * @return {any | undefined} The value stored in the item.
      */
     peek(): any | undefined {

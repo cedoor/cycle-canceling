@@ -1,8 +1,17 @@
-export class Graph {
+export default class Graph {
     private nodes: Map<number, Node>
 
-    constructor() {
+    constructor(graphData?: GraphData) {
         this.nodes = new Map()
+
+        if (graphData) {
+            for (const n of graphData) {
+                const arcs = n[2] ? n[2].map((arc) => new Arc(...arc)) : []
+                const node = new Node(n[0], n[1], arcs)
+
+                this.addNode(node)
+            }
+        }
     }
 
     addNode(node: Node) {
@@ -88,16 +97,3 @@ export class Arc {
 }
 
 export type GraphData = [[number, number, [[number, number, number, number]]]]
-
-export default function createGraph(graphData: GraphData) {
-    const graph = new Graph()
-
-    for (const n of graphData) {
-        const arcs = n[2] ? n[2].map((arc) => new Arc(...arc)) : []
-        const node = new Node(n[0], n[1], arcs)
-
-        graph.addNode(node)
-    }
-
-    return graph
-}
