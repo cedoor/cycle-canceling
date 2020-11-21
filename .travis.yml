@@ -14,5 +14,5 @@ after_success:
 install:
   - yarn install
 branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+  only:
+  - main
