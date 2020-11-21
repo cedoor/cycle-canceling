@@ -32,7 +32,7 @@
         "test": "mocha --exit --recursive 'test/**/*.test.ts'",
         "build": "tsc",
         "watch": "tsc -w",
-        "docs": "typedoc --out docs src --plugin typedoc-plugin-markdown"
+        "docs": "rm -fr docs && typedoc --out docs src --plugin typedoc-plugin-markdown --hideProjectName true"
     },
     "devDependencies": {
         "@types/chai": "4.2.14",

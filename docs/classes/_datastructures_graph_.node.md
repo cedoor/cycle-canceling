@@ -1,5 +1,3 @@
-**[cycle-canceling](../README.md)**
-
 > [Globals](../globals.md) / ["dataStructures/graph"](../modules/_datastructures_graph_.md) / Node
 
 # Class: Node
@@ -34,7 +32,7 @@
 
 \+ **new Node**(`id`: number, `balance`: number, `arcs?`: [Arc](_datastructures_graph_.arc.md)[]): [Node](_datastructures_graph_.node.md)
 
-*Defined in [dataStructures/graph.ts:48](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/graph.ts#L48)*
+*Defined in [dataStructures/graph.ts:48](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/graph.ts#L48)*
 
 #### Parameters:
 
@@ -52,7 +50,7 @@ Name | Type | Default value |
 
 • `Private` **arcs**: Map\<number, [Arc](_datastructures_graph_.arc.md)>
 
-*Defined in [dataStructures/graph.ts:48](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/graph.ts#L48)*
+*Defined in [dataStructures/graph.ts:48](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/graph.ts#L48)*
 
 ___
 
@@ -60,7 +58,7 @@ ___
 
 •  **balance**: number
 
-*Defined in [dataStructures/graph.ts:46](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/graph.ts#L46)*
+*Defined in [dataStructures/graph.ts:46](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/graph.ts#L46)*
 
 ___
 
@@ -68,7 +66,7 @@ ___
 
 •  **id**: number
 
-*Defined in [dataStructures/graph.ts:45](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/graph.ts#L45)*
+*Defined in [dataStructures/graph.ts:45](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/graph.ts#L45)*
 
 ## Methods
 
@@ -76,7 +74,7 @@ ___
 
 ▸ **addArc**(`head`: number, `cost`: number, `capacity`: number, `maximumCapacity`: number): void
 
-*Defined in [dataStructures/graph.ts:56](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/graph.ts#L56)*
+*Defined in [dataStructures/graph.ts:56](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/graph.ts#L56)*
 
 #### Parameters:
 
@@ -95,7 +93,7 @@ ___
 
 ▸ **getArc**(`head`: number): [Arc](_datastructures_graph_.arc.md)
 
-*Defined in [dataStructures/graph.ts:70](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/graph.ts#L70)*
+*Defined in [dataStructures/graph.ts:70](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/graph.ts#L70)*
 
 #### Parameters:
 
@@ -111,7 +109,7 @@ ___
 
 ▸ **getArcs**(): Map\<number, [Arc](_datastructures_graph_.arc.md)>
 
-*Defined in [dataStructures/graph.ts:80](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/graph.ts#L80)*
+*Defined in [dataStructures/graph.ts:80](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/graph.ts#L80)*
 
 **Returns:** Map\<number, [Arc](_datastructures_graph_.arc.md)>
 
@@ -121,7 +119,7 @@ ___
 
 ▸ **hasArc**(`head`: number): boolean
 
-*Defined in [dataStructures/graph.ts:66](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/graph.ts#L66)*
+*Defined in [dataStructures/graph.ts:66](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/graph.ts#L66)*
 
 #### Parameters:
 
@@ -137,7 +135,7 @@ ___
 
 ▸ **removeArc**(`head`: number): void
 
-*Defined in [dataStructures/graph.ts:62](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/graph.ts#L62)*
+*Defined in [dataStructures/graph.ts:62](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/graph.ts#L62)*
 
 #### Parameters:
 

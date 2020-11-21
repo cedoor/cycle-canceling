@@ -1,10 +1,8 @@
-**[cycle-canceling](README.md)**
-
 > [Globals](globals.md)
 
 <p align="center">
     <h1 align="center">
-        Cycle canceling algorithm
+        Cycle canceling algorithm <sup>work in progress</sup>
     </h1>
     <p align="center">TypeScript implementation of cycle-canceling algorithm.</p>
 </p>

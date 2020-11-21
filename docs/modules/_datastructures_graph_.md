@@ -1,5 +1,3 @@
-**[cycle-canceling](../README.md)**
-
 > [Globals](../globals.md) / "dataStructures/graph"
 
 # Module: "dataStructures/graph"
@@ -22,4 +20,4 @@
 
 Ƭ  **GraphData**: [[number, number, [[number, number, number, number]]]]
 
-*Defined in [dataStructures/graph.ts:99](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/graph.ts#L99)*
+*Defined in [dataStructures/graph.ts:99](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/graph.ts#L99)*

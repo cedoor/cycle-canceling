@@ -1,5 +1,3 @@
-**[cycle-canceling](../README.md)**
-
 > [Globals](../globals.md) / "dataStructures/queue"
 
 # Module: "dataStructures/queue"

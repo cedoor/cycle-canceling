@@ -1,5 +1,3 @@
-**[cycle-canceling](README.md)**
-
 > Globals
 
 # cycle-canceling

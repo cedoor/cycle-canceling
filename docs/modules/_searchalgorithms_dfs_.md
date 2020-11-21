@@ -1,5 +1,3 @@
-**[cycle-canceling](../README.md)**
-
 > [Globals](../globals.md) / "searchAlgorithms/dfs"
 
 # Module: "searchAlgorithms/dfs"
@@ -16,7 +14,7 @@
 
 ▸ **dfs**(`graph`: [Graph](../classes/_datastructures_graph_.graph.md), `sourceNode`: number, `sinkNode`: number): number[] \| undefined
 
-*Defined in [searchAlgorithms/dfs.ts:14](https://github.com/cedoor/cycle-canceling/blob/639af49/src/searchAlgorithms/dfs.ts#L14)*
+*Defined in [searchAlgorithms/dfs.ts:14](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/searchAlgorithms/dfs.ts#L14)*
 
 Modified version of the Depth-First Search algorithm to identify
 a specific directed path between a source node and a sink node.

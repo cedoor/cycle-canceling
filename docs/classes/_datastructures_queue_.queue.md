@@ -1,5 +1,3 @@
-**[cycle-canceling](../README.md)**
-
 > [Globals](../globals.md) / ["dataStructures/queue"](../modules/_datastructures_queue_.md) / Queue
 
 # Class: Queue
@@ -37,7 +35,7 @@ have 'shift' and 'push' methods but 'shift' take linear time.
 
 \+ **new Queue**(): [Queue](_datastructures_queue_.queue.md)
 
-*Defined in [dataStructures/queue.ts:9](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/queue.ts#L9)*
+*Defined in [dataStructures/queue.ts:9](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/queue.ts#L9)*
 
 **Returns:** [Queue](_datastructures_queue_.queue.md)
 
@@ -47,7 +45,7 @@ have 'shift' and 'push' methods but 'shift' take linear time.
 
 • `Private` **end**: number
 
-*Defined in [dataStructures/queue.ts:8](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/queue.ts#L8)*
+*Defined in [dataStructures/queue.ts:8](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/queue.ts#L8)*
 
 ___
 
@@ -55,7 +53,7 @@ ___
 
 • `Private` **front**: number
 
-*Defined in [dataStructures/queue.ts:7](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/queue.ts#L7)*
+*Defined in [dataStructures/queue.ts:7](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/queue.ts#L7)*
 
 ___
 
@@ -63,7 +61,7 @@ ___
 
 • `Private` **store**: Record\<number, any>
 
-*Defined in [dataStructures/queue.ts:9](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/queue.ts#L9)*
+*Defined in [dataStructures/queue.ts:9](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/queue.ts#L9)*
 
 ## Methods
 
@@ -71,7 +69,7 @@ ___
 
 ▸ **dequeue**(): any \| undefined
 
-*Defined in [dataStructures/queue.ts:32](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/queue.ts#L32)*
+*Defined in [dataStructures/queue.ts:32](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/queue.ts#L32)*
 
 Removes an item from the queue and return its value.
 Time complexity: O(1).
@@ -86,7 +84,7 @@ ___
 
 ▸ **enqueue**(`value`: any): void
 
-*Defined in [dataStructures/queue.ts:22](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/queue.ts#L22)*
+*Defined in [dataStructures/queue.ts:22](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/queue.ts#L22)*
 
 Adds an item to the end of the queue.
 Time complexity: O(1).
@@ -105,7 +103,7 @@ ___
 
 ▸ **peek**(): any \| undefined
 
-*Defined in [dataStructures/queue.ts:59](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/queue.ts#L59)*
+*Defined in [dataStructures/queue.ts:59](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/queue.ts#L59)*
 
 Returns the item at front of the queue without dequeuing.
 Time complexity: O(1).
@@ -120,7 +118,7 @@ ___
 
 ▸ **size**(): number
 
-*Defined in [dataStructures/queue.ts:50](https://github.com/cedoor/cycle-canceling/blob/639af49/src/dataStructures/queue.ts#L50)*
+*Defined in [dataStructures/queue.ts:50](https://github.com/cedoor/cycle-canceling/blob/62db7a4/src/dataStructures/queue.ts#L50)*
 
 Returns the current size of the queue.
 Time complexity: O(1).
