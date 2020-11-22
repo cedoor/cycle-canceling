@@ -17,7 +17,7 @@
 
 ___
 
-## :paperclip: Table of Contents
+## Table of Contents
 - 🛠 [Install](#install)
 - 🕹 [Usage](#usage)
 - 🔬 [Development](#development)
