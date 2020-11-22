@@ -2,7 +2,7 @@ import Graph from "../dataStructures/graph"
 import bfs from "../searchAlgorithms/bfs"
 
 /**
- * Edmonds–Karp algorithm (https://doi.org/10.1145%2F321694.321699) is an
+ * The Edmonds–Karp algorithm (https://doi.org/10.1145%2F321694.321699) is an
  * implementation of the Ford–Fulkerson method for computing the maximum
  * flow between two nodes in a flow network. The algorithm uses the
  * Breadth First Search algorithm to find the augmenting path between the
@@ -14,9 +14,9 @@ import bfs from "../searchAlgorithms/bfs"
  * @param {number} Sink node.
  * @returns {number} Maximum flow from the source to the sink node.
  */
-export default function edmondsKarp(graph: Graph, sourceNode: number, sinkNode: number): number {
+export default function edmondsKarp(graph: Graph, sourceNodeId: number, sinkNodeId: number): number {
     let maximumflow = 0
-    let path = bfs(graph, sourceNode, sinkNode)
+    let path = bfs(graph, sourceNodeId, sinkNodeId)
 
     // While loop stops when there is no path between the source and sink nodes.
     while (path) {
@@ -27,7 +27,7 @@ export default function edmondsKarp(graph: Graph, sourceNode: number, sinkNode: 
         updateResidualCapacities(graph, path, minimumCapacity)
 
         // Searches another path with the new residual graph.
-        path = bfs(graph, sourceNode, sinkNode)
+        path = bfs(graph, sourceNodeId, sinkNodeId)
     }
 
     return maximumflow
@@ -76,7 +76,7 @@ function updateResidualCapacities(graph: Graph, path: number[], capacity: number
         }
 
         if (!adjacentNode.hasArc(node.id)) {
-            adjacentNode.addArc(node.id, arc.cost, capacity, arc.maximumCapacity)
+            adjacentNode.addArc(node.id, -arc.cost, capacity, arc.maximumCapacity)
         } else {
             const reverseArc = adjacentNode.getArc(node.id)
 

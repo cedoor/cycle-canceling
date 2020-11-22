@@ -1,5 +1,5 @@
 import Graph from "../dataStructures/graph"
-import { retrievePath } from "./utils"
+import { retrievePath } from "../utils"
 
 /**
  * Modified version of the Depth-First Search algorithm to identify
@@ -11,35 +11,35 @@ import { retrievePath } from "./utils"
  * @param {number} Source node of the path.
  * @returns {number[] | undefined} Path between source node and sink node.
  */
-export default function dfs(graph: Graph, sourceNode: number, sinkNode: number): number[] | undefined {
-    // Contains the nodes marked as visited and their parent nodes.
-    // Parent nodes are useful for reconstructing the path.
-    const visitedNodes = new Map<number, number>()
-    const stack = [sourceNode] // Initialize the stack with the source node.
+export default function dfs(graph: Graph, sourceNodeId: number, sinkNodeId: number): number[] | undefined {
+    // Contains the visited nodes with their predecessor nodes.
+    // Predecessors nodes are useful for reconstructing the path.
+    const predecessors = new Map<number, number>()
+    const stack = [sourceNodeId] // Initialize the stack with the source node.
 
     // Marks the source node as visited, with 0 as parent node.
-    visitedNodes.set(sourceNode, 0)
+    predecessors.set(sourceNodeId, 0)
 
     // While loop stops when the stack becomes empty.
     while (stack.length) {
         const nodeId = stack.pop() as number
-        const adjacentArcs = graph.getNode(nodeId).getArcs()
+        const node = graph.getNode(nodeId)
 
         // If an adjacent node is the sink node retrieves the path backwards.
-        if (adjacentArcs.has(sinkNode)) {
-            visitedNodes.set(sinkNode, nodeId)
+        if (node.hasArc(sinkNodeId)) {
+            predecessors.set(sinkNodeId, nodeId)
 
-            return retrievePath(visitedNodes, sinkNode)
+            return retrievePath(predecessors, sourceNodeId, sinkNodeId)
         }
+
+        const arcs = node.getArcs()
 
         // If there is adjacent arcs (and then nodes) marks them as visited nodes
         // and adds them to the stack.
-        if (adjacentArcs.size > 0) {
-            for (const adjacentArc of adjacentArcs) {
-                if (!visitedNodes.has(adjacentArc[0])) {
-                    visitedNodes.set(adjacentArc[0], nodeId)
-                    stack.push(adjacentArc[0])
-                }
+        for (const arc of arcs) {
+            if (!predecessors.has(arc.head)) {
+                predecessors.set(arc.head, nodeId)
+                stack.push(arc.head)
             }
         }
     }
