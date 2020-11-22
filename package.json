@@ -32,7 +32,7 @@
         "test": "mocha --exit --recursive 'test/**/*.test.ts'",
         "build": "tsc",
         "watch": "tsc -w",
-        "docs": "rm -fr docs && typedoc --out docs src"
+        "docs": "rm -fr docs && typedoc --out docs src && cp CNAME docs"
     },
     "devDependencies": {
         "@types/chai": "4.2.14",
