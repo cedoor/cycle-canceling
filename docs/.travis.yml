@@ -1,0 +1,18 @@
+language: node_js
+cache:
+  yarn: true
+  directories:
+    - node_modules
+notifications:
+  email: false
+node_js:
+  - '12'
+before_script:
+script:
+  - yarn run lint && yarn run test
+after_success:
+install:
+  - yarn install
+branches:
+  only:
+  - main

@@ -32,7 +32,8 @@
         "test": "mocha --exit --recursive 'test/**/*.test.ts'",
         "build": "tsc",
         "watch": "tsc -w",
-        "docs": "rm -fr docs && typedoc --out docs src && cp CNAME docs"
+        "docs": "rm -fr docs && typedoc --out docs src && cp CNAME docs && cp .travis.yml docs && touch docs/.nojekyll",
+        "docs:publish": "gh-pages -d docs -m \"[docs] update documentation website\" -t"
     },
     "devDependencies": {
         "@types/chai": "4.2.14",
@@ -44,6 +45,7 @@
         "chai": "4.2.0",
         "eslint": "7.13.0",
         "eslint-config-prettier": "6.15.0",
+        "gh-pages": "^3.1.0",
         "mocha": "8.2.1",
         "prettier": "2.1.2",
         "ts-node": "9.0.0",
