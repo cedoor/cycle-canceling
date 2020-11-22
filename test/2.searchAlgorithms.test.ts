@@ -5,7 +5,7 @@ import dfs from "../src/searchAlgorithms/dfs"
 import bfs from "../src/searchAlgorithms/bfs"
 
 describe("Search algorithms", () => {
-    const graphData = JSON.parse(readFileSync("./data/simpleGraph.json", "utf8"))
+    const graphData = JSON.parse(readFileSync("./data/graph1.json", "utf8"))
     const graph = new Graph(graphData)
 
     describe("Depth first search", () => {

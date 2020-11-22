@@ -5,11 +5,12 @@ export default class Graph {
         this.nodes = new Map()
 
         if (graphData) {
-            for (const n of graphData) {
-                const arcs = n[2] ? n[2].map((arc) => new Arc(...arc)) : []
-                const node = new Node(n[0], n[1], arcs)
+            for (const node of graphData) {
+                const arcs = node.arcs
+                    ? node.arcs.map((arc) => new Arc(arc.head, arc.cost, arc.capacity, arc.maximumCapacity))
+                    : []
 
-                this.addNode(node)
+                this.addNode(new Node(node.id, node.balance, arcs))
             }
         }
     }
@@ -28,10 +29,22 @@ export default class Graph {
         return node
     }
 
+    hasNode(id: number): boolean {
+        return this.nodes.has(id)
+    }
+
+    getNodes(): Node[] {
+        return Array.from(this.nodes.values())
+    }
+
+    size(): number {
+        return this.nodes.size
+    }
+
     checkIntegrity(): boolean {
-        for (const node of this.nodes) {
-            for (const arc of node[1].getArcs()) {
-                if (!this.nodes.has(arc[1].head)) {
+        for (const node of this.getNodes()) {
+            for (const arc of node.getArcs()) {
+                if (!this.hasNode(arc.head)) {
                     return false
                 }
             }
@@ -77,8 +90,8 @@ export class Node {
         return arc
     }
 
-    getArcs() {
-        return this.arcs
+    getArcs(): Arc[] {
+        return Array.from(this.arcs.values())
     }
 }
 
@@ -96,4 +109,17 @@ export class Arc {
     }
 }
 
-export type GraphData = [[number, number, [[number, number, number, number]]]]
+export type GraphData = [
+    {
+        id: number
+        balance: number
+        arcs: [
+            {
+                head: number
+                cost: number
+                capacity: number
+                maximumCapacity: number
+            }
+        ]
+    }
+]

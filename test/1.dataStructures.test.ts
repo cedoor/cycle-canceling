@@ -1,6 +1,5 @@
 import { assert } from "chai"
 import { readFileSync } from "fs"
-import { performance } from "perf_hooks"
 import Graph, { Arc, Node } from "../src/dataStructures/graph"
 import Queue from "../src/dataStructures/queue"
 
@@ -42,7 +41,7 @@ describe("Data structures", () => {
         })
 
         it("Should create a graph using external graph data", () => {
-            const graphData = JSON.parse(readFileSync("./data/simpleGraph.json", "utf8"))
+            const graphData = JSON.parse(readFileSync("./data/graph1.json", "utf8"))
             const graph = new Graph(graphData)
 
             assert.deepEqual(graph.checkIntegrity(), true)
