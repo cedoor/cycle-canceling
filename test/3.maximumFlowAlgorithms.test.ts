@@ -1,7 +1,7 @@
 import { assert } from "chai"
 import { readFileSync } from "fs"
 import Graph from "../src/dataStructures/graph"
-import edmondsKarp from "../src/maximumFlowAlgorithms/edmondsKarp"
+import { edmondsKarp } from "../src/maximumFlowAlgorithms"
 
 describe("Maximum flow algorithms", () => {
     const graphData = JSON.parse(readFileSync("./data/graph1.json", "utf8"))
@@ -9,9 +9,9 @@ describe("Maximum flow algorithms", () => {
     describe("Edmonds Karp", () => {
         it("Should calculate the correct maximum flow of the graph", () => {
             const graph = new Graph(graphData)
-            const maximumFlow = edmondsKarp(graph, 1, 4)
+            const maximumFlow = edmondsKarp(graph, 1, 5)
 
-            assert.deepEqual(maximumFlow, 4)
+            assert.deepEqual(maximumFlow, 25)
         })
     })
 })
