@@ -32,7 +32,7 @@ describe("Data structures", () => {
     describe("Graph", () => {
         it("Should create a graph with a node", () => {
             const graph = new Graph()
-            const arc = new Arc(2, 2, 4, 5)
+            const arc = new Arc(2, 2, 4)
             const node = new Node(1, 2, [arc])
 
             graph.addNode(node)

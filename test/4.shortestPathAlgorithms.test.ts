@@ -1,7 +1,7 @@
 import { assert } from "chai"
 import { readFileSync } from "fs"
 import Graph from "../src/dataStructures/graph"
-import bellmanFord from "../src/shortestPathAlgorithms/bellmanFord"
+import { bellmanFord } from "../src/shortestPathAlgorithms"
 
 describe("Shortest path algorithms", () => {
     const graphData = JSON.parse(readFileSync("./data/graph2.json", "utf8"))

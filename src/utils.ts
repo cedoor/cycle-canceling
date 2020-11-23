@@ -1,3 +1,5 @@
+import Graph, { Arc } from "./dataStructures/graph"
+
 /**
  * Retrieves the path from the sink node to the source node
  * using the predecessors map.
@@ -17,4 +19,27 @@ export function retrievePath(predecessors: Map<number, number>, sourceNodeId: nu
 
     // Returns a reversed array, ordered from the source to the sink node.
     return path.reverse()
+}
+
+/**
+ *
+ * @param {Graph}
+ */
+export function setResidualGraph(graph: Graph) {
+    for (const node of graph.getNodes()) {
+        for (const arc of node.getArcs()) {
+            if (arc.cost > 0) {
+                const adjacentNode = graph.getNode(arc.head)
+                const reverseArc = new Arc(node.id, -arc.cost, arc.capacity, arc.flow)
+
+                adjacentNode.addArc(reverseArc)
+
+                if (arc.capacity > arc.flow) {
+                    arc.flow = arc.capacity - arc.flow
+                } else {
+                    node.removeArc(arc.head)
+                }
+            }
+        }
+    }
 }

@@ -6,9 +6,7 @@ export default class Graph {
 
         if (graphData) {
             for (const node of graphData) {
-                const arcs = node.arcs
-                    ? node.arcs.map((arc) => new Arc(arc.head, arc.cost, arc.capacity, arc.maximumCapacity))
-                    : []
+                const arcs = node.arcs ? node.arcs.map((arc) => new Arc(arc.head, arc.cost, arc.capacity)) : []
 
                 this.addNode(new Node(node.id, node.balance, arcs))
             }
@@ -16,7 +14,19 @@ export default class Graph {
     }
 
     addNode(node: Node) {
+        if (this.hasNode(node.id)) {
+            throw Error(`Node with id ${node.id} already exists`)
+        }
+
         this.nodes.set(node.id, node)
+    }
+
+    removeNode(id: number) {
+        if (!this.hasNode(id)) {
+            throw Error(`Node with id ${id} does not exists`)
+        }
+
+        this.nodes.delete(id)
     }
 
     getNode(id: number): Node {
@@ -66,18 +76,20 @@ export class Node {
         this.arcs = new Map(arcs.map((arc) => [arc.head, arc]))
     }
 
-    addArc(head: number, cost: number, capacity: number, maximumCapacity: number) {
-        const arc = new Arc(head, cost, capacity, maximumCapacity)
+    addArc(arc: Arc) {
+        if (this.hasArc(arc.head)) {
+            throw Error(`Arc with head ${arc.head} already exists`)
+        }
 
-        this.arcs.set(head, arc)
+        this.arcs.set(arc.head, arc)
     }
 
     removeArc(head: number) {
-        this.arcs.delete(head)
-    }
+        if (!this.hasArc(head)) {
+            throw Error(`Arc with head ${head} does not exists`)
+        }
 
-    hasArc(head: number): boolean {
-        return this.arcs.has(head)
+        this.arcs.delete(head)
     }
 
     getArc(head: number): Arc {
@@ -90,6 +102,10 @@ export class Node {
         return arc
     }
 
+    hasArc(head: number): boolean {
+        return this.arcs.has(head)
+    }
+
     getArcs(): Arc[] {
         return Array.from(this.arcs.values())
     }
@@ -99,13 +115,13 @@ export class Arc {
     head: number
     cost: number
     capacity: number
-    maximumCapacity: number
+    flow: number
 
-    constructor(head: number, cost: number, capacity: number, maximumCapacity: number) {
+    constructor(head: number, cost: number, capacity: number, flow = 0) {
+        this.head = head
         this.cost = cost
         this.capacity = capacity
-        this.maximumCapacity = maximumCapacity
-        this.head = head
+        this.flow = flow
     }
 }
 
@@ -118,7 +134,6 @@ export type GraphData = [
                 head: number
                 cost: number
                 capacity: number
-                maximumCapacity: number
             }
         ]
     }

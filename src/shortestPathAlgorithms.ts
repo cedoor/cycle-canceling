@@ -1,5 +1,5 @@
-import Graph from "../dataStructures/graph"
-import { retrievePath } from "../utils"
+import Graph from "./dataStructures/graph"
+import { retrievePath } from "./utils"
 
 /**
  * The Bellman–Ford algorithm is an algorithm to find shortest paths
@@ -10,7 +10,7 @@ import { retrievePath } from "../utils"
  * @param {number} Source node.
  * @returns {number[] | undefined} Path of the negative cycle.
  */
-export default function bellmanFord(graph: Graph, sourceNodeId: number): number[] | undefined {
+export function bellmanFord(graph: Graph, sourceNodeId: number): number[] | undefined {
     const distances = new Map<number, number>()
     const predecessors = new Map<number, number>()
 
