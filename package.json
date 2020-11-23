@@ -2,7 +2,6 @@
     "name": "cycle-canceling",
     "version": "0.1.0",
     "description": "TypeScript implementation of cycle-canceling algorithm.",
-    "main": "src/index.js",
     "homepage": "https://github.com/cedoor/cycle-canceling#readme",
     "repository": "git@github.com:cedoor/cycle-canceling.git",
     "bugs": {
@@ -14,6 +13,9 @@
         "url": "https://cedoor.dev"
     },
     "license": "MIT",
+    "main": "dist/cycleCanceling.js",
+    "module": "dist/cycleCanceling.js",
+    "types": "dist/cycleCanceling.d.js",
     "files": [
         "dist/",
         "src/",
@@ -30,12 +32,12 @@
         "lint:fix": "prettier --write 'src/**/*.ts' 'test/**/*.ts' && eslint 'src/**/*.ts' 'test/**/*.ts' --fix",
         "lint": "eslint 'src/**/*.ts' 'test/**/*.ts'",
         "test": "mocha --exit --recursive 'test/**/*.test.ts'",
-        "build": "tsc",
-        "watch": "tsc -w",
+        "build": "rollup -c && tsc -d --emitDeclarationOnly --outFile dist/cycleCanceling.js",
         "docs": "rm -fr docs && typedoc --out docs src && cp CNAME docs && cp .travis.yml docs && touch docs/.nojekyll",
         "docs:publish": "gh-pages -d docs -m \"[docs] update documentation website\" -t"
     },
     "devDependencies": {
+        "@rollup/plugin-typescript": "^6.1.0",
         "@types/chai": "4.2.14",
         "@types/fs-extra": "9.0.4",
         "@types/mocha": "8.0.4",
@@ -48,7 +50,9 @@
         "gh-pages": "^3.1.0",
         "mocha": "8.2.1",
         "prettier": "2.1.2",
+        "rollup": "^2.33.3",
         "ts-node": "9.0.0",
+        "tslib": "^2.0.3",
         "typedoc": "^0.19.2",
         "typescript": "4.0.5"
     }
