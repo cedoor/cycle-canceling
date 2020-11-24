@@ -84,6 +84,13 @@ export default class Graph {
     }
 
     /**
+     * Returns an instance of the copy of the current graph.
+     */
+    copy(): Graph {
+        return new Graph(this.export())
+    }
+
+    /**
      * Checks the integrity of the graph. All the arcs
      * must have an existing head node.
      * @returns {number} True if the graph is correct, false otherwise.
@@ -98,6 +105,31 @@ export default class Graph {
         }
 
         return true
+    }
+
+    /**
+     * Returns the graph data of the graph.
+     * @returns {GraphData} The graph data.
+     */
+    export(): GraphData {
+        const graphData: GraphData = []
+
+        for (const node of this.getNodes()) {
+            const arcs = node.getArcs().map((arc) => ({
+                head: arc.head,
+                cost: arc.cost,
+                capacity: arc.capacity,
+                flow: arc.flow
+            }))
+
+            graphData.push({
+                id: node.id,
+                balance: node.balance,
+                arcs
+            })
+        }
+
+        return graphData
     }
 }
 
@@ -207,16 +239,13 @@ export class Arc {
  * which can be passed into the graph class constructor
  * to create a graph using external data (i.e. JSON data).
  */
-export type GraphData = [
-    {
-        id: number
-        balance: number
-        arcs: [
-            {
-                head: number
-                cost: number
-                capacity: number
-            }
-        ]
-    }
-]
+export type GraphData = {
+    id: number
+    balance: number
+    arcs: {
+        head: number
+        cost: number
+        capacity: number
+        flow?: number
+    }[]
+}[]
