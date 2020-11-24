@@ -9,7 +9,7 @@ import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
  * and as long as negative cost cycles exist augment the flow along this cycles.
  * This implementation uses the Edmonds-Karp algorithm to solve the maximum flow problem,
  * and the Bellman-Fort algorithm to find the negative cycles.
- * Time complexity: O (n * m * C * U).
+ * Time complexity: O (n * m^2 * C * U).
  * @param {Graph} The graph to visit.
  * @returns {[number, number]} The maximum flow and the minimum cost.
  */
