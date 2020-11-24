@@ -1,7 +1,9 @@
 /**
- * Queue data structure allows you to perform FIFO
- * operations in constant time. JavaScript arrays
- * have 'shift' and 'push' methods but 'shift' take linear time.
+ * The queue data structure allows you to perform FIFO
+ * operations in constant time. You can enqueue, dequeue
+ * and peek an item, and get the size of the queue.
+ * JavaScript arrays have 'shift' and
+ * 'push' methods but 'shift' take O(n) time.
  */
 export default class Queue {
     private front: number
