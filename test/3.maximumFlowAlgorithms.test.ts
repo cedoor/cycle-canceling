@@ -9,7 +9,8 @@ describe("Maximum flow algorithms", () => {
     describe("Edmonds Karp", () => {
         it("Should calculate the correct maximum flow of the graph", () => {
             const graph = new Graph(graphData)
-            const maximumFlow = edmondsKarp(graph, 1, 5)
+
+            const [, maximumFlow] = edmondsKarp(graph)
 
             assert.deepEqual(maximumFlow, 25)
         })

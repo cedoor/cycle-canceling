@@ -1,25 +1,26 @@
 import Graph, { Arc, Node } from "./dataStructures/graph"
 import { bfs } from "./searchAlgorithms"
+import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
 
 /**
- * The Edmonds–Karp algorithm (https://doi.org/10.1145%2F321694.321699) is an
- * implementation of the Ford–Fulkerson method for computing the maximum
- * flow between two nodes in a flow network. The algorithm uses the
- * Breadth First Search algorithm to find the augmenting path between the
- * source and the sink node, and increment the maximum flow with the minimum
- * arc capacity for each path creating the residual graph.
+ * The Edmonds–Karp algorithm is an implementation of the Ford–Fulkerson
+ * method for computing the maximum flow between two nodes in a flow network.
+ * The algorithm uses the Breadth First Search algorithm to find the
+ * augmenting path between the source and the sink node, and increment
+ * the maximum flow with the minimum arc capacity for each path
+ * using the residual graph. Returns the optimal graph and the maximum flow.
+ * The last two nodes in the optimal graph are the source node and the sink node.
  * Time complexity: O(n * m^2).
- * @param {Graph} Graph to visit.
- * @param {number} Source node.
- * @param {number} Sink node.
- * @returns {number} Maximum flow from the source to the sink node.
+ * @param {Graph} The graph to visit.
+ * @returns {[Graph, number]} The optimal flow graph and the maximum flow.
  */
-export function edmondsKarp(graph: Graph, sourceNodeId: number, sinkNodeId: number): number {
+export function edmondsKarp(graph: Graph): [Graph, number] {
+    // Extends the graph to calculate the feasible graph.
+    const [tSourceNodeId, tSinkNodeId] = extendGraph(graph)
+
+    setResidualGraph(graph)
+
     let maximumflow = 0
-
-    // Converts the graph in a transformed graph.
-    const [tSourceNodeId, tSinkNodeId] = setTransformedGraph(graph, sourceNodeId, sinkNodeId)
-
     let path = bfs(graph, tSourceNodeId, tSinkNodeId)
 
     // While loop stops when there is no path between the source and sink nodes.
@@ -34,103 +35,70 @@ export function edmondsKarp(graph: Graph, sourceNodeId: number, sinkNodeId: numb
         path = bfs(graph, tSourceNodeId, tSinkNodeId)
     }
 
-    // Converts the graph in the optimal flow graph.
-    setOptimalGraph(graph)
-
-    // Remove the nodes created in the transformed network.
-    graph.removeNode(tSourceNodeId)
-    graph.removeNode(tSinkNodeId)
-
-    return maximumflow
+    return [getOptimalGraph(graph), maximumflow]
 }
 
 /**
- * Returns the arc minimum capacity of the path.
+ * Extends the graph with two new source and sink nodes.
+ * For each node with balance greater than 0, it creates
+ * an arc with capacity = balance from the new source node to this node.
+ * For each node with balance less than 0, it creates
+ * an arc with capacity = -balance from the node to the new sink nodes.
+ * This allows you to compute a feasible graph, where the mass balance
+ * constraint is respected.
  * Time complexity: O(n).
- * @param {Graph} Graph containing the path.
- * @param {number[]} Path of the nodes.
- * @returns {number} Minimum capacity.
+ * @param {Graph} The graph to extend.
+ * @returns {number[]} The new source and sink nodes.
  */
-function getResidualCapacity(graph: Graph, path: number[]): number {
-    let residualCapacity = Infinity
-
-    for (let i = 0; i < path.length - 1; i++) {
-        const node = graph.getNode(path[i])
-        const arc = node.getArc(path[i + 1])
-
-        if (arc.capacity - arc.flow < residualCapacity) {
-            residualCapacity = arc.capacity - arc.flow
-        }
-    }
-
-    return residualCapacity
-}
-
-/**
- * Augments the path in the graph updating the flow of the arcs.
- * Time complexity: O(n).
- * @param {Graph} Graph containing the path.
- * @param {number[]} Path of the nodes.
- * @param {number} Capacity to carry in the path.
- */
-function sendFlow(graph: Graph, path: number[], flow: number) {
-    for (let i = 0; i < path.length - 1; i++) {
-        const node = graph.getNode(path[i])
-        const arc = node.getArc(path[i + 1])
-        const adjacentNode = graph.getNode(arc.head)
-
-        if (arc.capacity - arc.flow === flow) {
-            node.removeArc(adjacentNode.id)
-        } else {
-            arc.flow += flow
-        }
-
-        if (!adjacentNode.hasArc(node.id)) {
-            adjacentNode.addArc(new Arc(node.id, -arc.cost, arc.capacity, flow))
-        } else {
-            const reverseArc = adjacentNode.getArc(node.id)
-
-            reverseArc.flow += flow
-        }
-    }
-}
-
-/**
- *
- * @param {Graph} Graph to transform.
- * @param {number} Original source node.
- * @param {number} Original sink node.
- * @returns {number[]} New source and sink nodes.
- */
-function setTransformedGraph(graph: Graph, sourceNodeId: number, sinkNodeId: number): [number, number] {
-    const oldSourceNode = graph.getNode(sourceNodeId)
-    const oldSinkNode = graph.getNode(sinkNodeId)
-    const newSourceNode = new Node(graph.size() + 1, oldSourceNode.balance)
-    const newSinkNode = new Node(graph.size() + 2, oldSinkNode.balance)
-
-    const sourceNodeArc = new Arc(oldSourceNode.id, 0, oldSourceNode.balance)
-    newSourceNode.addArc(sourceNodeArc)
-
-    const sinkNodeArc = new Arc(newSinkNode.id, 0, -oldSinkNode.balance)
-    oldSinkNode.addArc(sinkNodeArc)
+function extendGraph(graph: Graph): [number, number] {
+    const nodes = graph.getNodes()
+    const newSourceNode = new Node(graph.size() + 1, 0)
+    const newSinkNode = new Node(graph.size() + 2, 0)
 
     graph.addNode(newSourceNode)
     graph.addNode(newSinkNode)
 
+    for (const node of nodes) {
+        if (node.balance > 0) {
+            const arc = new Arc(node.id, 0, node.balance)
+            newSourceNode.addArc(arc)
+            newSourceNode.balance += node.balance
+        } else if (node.balance < 0) {
+            const arc = new Arc(newSinkNode.id, 0, -node.balance)
+            node.addArc(arc)
+            newSinkNode.balance += node.balance
+        }
+
+        node.balance = 0
+    }
+
     return [newSourceNode.id, newSinkNode.id]
 }
 
-function setOptimalGraph(graph: Graph) {
+/**
+ * Updates the residual graph removing the arcs with positive cost
+ * and returns the optimal graph.
+ * Time complexity: O(m).
+ * @param {Graph} The graph to update.
+ * @returns {Graph} The optimal graph.
+ */
+function getOptimalGraph(graph: Graph): Graph {
+    const optimalGraph = new Graph()
+
+    for (const node of graph.getNodes()) {
+        optimalGraph.addNode(new Node(node.id, node.balance))
+    }
+
     for (const node of graph.getNodes()) {
         for (const arc of node.getArcs()) {
-            if (arc.cost < 0) {
-                const adjacentNode = graph.getNode(arc.head)
+            if (arc.cost < 0 || Object.is(arc.cost, -0)) {
+                const adjacentNode = optimalGraph.getNode(arc.head)
                 const reverseArc = new Arc(node.id, -arc.cost, arc.capacity, arc.flow)
 
                 adjacentNode.addArc(reverseArc)
             }
-
-            node.removeArc(arc.head)
         }
     }
+
+    return optimalGraph
 }

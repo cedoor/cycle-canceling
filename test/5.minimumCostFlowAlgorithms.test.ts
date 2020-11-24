@@ -9,7 +9,7 @@ describe("Minimum cost flow algorithms", () => {
             const graphData = JSON.parse(readFileSync("./data/graph1.json", "utf8"))
             const graph = new Graph(graphData)
 
-            const [maximumFlow, minimumCost] = cycleCanceling(graph, 1, 5)
+            const [maximumFlow, minimumCost] = cycleCanceling(graph)
 
             assert.deepEqual(maximumFlow, 25)
             assert.deepEqual(minimumCost, 20)
@@ -19,7 +19,7 @@ describe("Minimum cost flow algorithms", () => {
             const graphData = JSON.parse(readFileSync("./data/graph3.json", "utf8"))
             const graph = new Graph(graphData)
 
-            const [maximumFlow, minimumCost] = cycleCanceling(graph, 1, 6)
+            const [maximumFlow, minimumCost] = cycleCanceling(graph)
 
             assert.deepEqual(maximumFlow, 25)
             assert.deepEqual(minimumCost, 33)

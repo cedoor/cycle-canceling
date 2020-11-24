@@ -1,31 +1,37 @@
-import Graph, { Arc } from "./dataStructures/graph"
+import Graph from "./dataStructures/graph"
 import { edmondsKarp } from "./maximumFlowAlgorithms"
 import { bellmanFord } from "./shortestPathAlgorithms"
-import { setResidualGraph } from "./utils"
+import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
 
 /**
- * @param {Graph}
- * @param {number}
- * @param {number}
+ * The Cycle-Canceling algorithm is a minimum-cost flow problem
+ * and starting from a feasible graph obtained with a maximum flow algorithm
+ * and as long as negative cost cycles exist augment the flow along this cycles.
+ * This implementation uses the Edmonds-Karp algorithm to solve the maximum flow problem,
+ * and the Bellman-Fort algorithm to find the negative cycles.
+ * Time complexity: O (n * m * C * U).
+ * @param {Graph} The graph to visit.
+ * @returns {[number, number]} The maximum flow and the minimum cost.
  */
-export function cycleCanceling(graph: Graph, sourceNodeId: number, sinkNodeId: number): [number, number] {
-    const maximumFlow = edmondsKarp(graph, sourceNodeId, sinkNodeId)
+export function cycleCanceling(graph: Graph): [number, number] {
+    const [optimalGraph, maximumFlow] = edmondsKarp(graph)
+    const sourceNodeId = optimalGraph.size() - 1
 
-    setResidualGraph(graph)
+    setResidualGraph(optimalGraph)
 
-    let negativeCycle = bellmanFord(graph, sourceNodeId)
+    let negativeCycle = bellmanFord(optimalGraph, sourceNodeId)
 
     while (negativeCycle) {
-        const residualCapacity = getResidualCapacity(graph, negativeCycle)
+        const residualCapacity = getResidualCapacity(optimalGraph, negativeCycle)
 
-        sendFlow(graph, negativeCycle, residualCapacity)
+        sendFlow(optimalGraph, negativeCycle, residualCapacity)
 
-        negativeCycle = bellmanFord(graph, sourceNodeId)
+        negativeCycle = bellmanFord(optimalGraph, sourceNodeId)
     }
 
     // Calculates the minimum cost.
     let minimumCost = 0
-    for (const node of graph.getNodes()) {
+    for (const node of optimalGraph.getNodes()) {
         for (const arc of node.getArcs()) {
             if (arc.cost < 0) {
                 minimumCost -= arc.cost
@@ -34,55 +40,4 @@ export function cycleCanceling(graph: Graph, sourceNodeId: number, sinkNodeId: n
     }
 
     return [maximumFlow, minimumCost]
-}
-
-/**
- * Returns the arc minimum capacity of the path.
- * Time complexity: O(n).
- * @param {Graph} Graph containing the path.
- * @param {number[]} Path of the nodes.
- * @returns {number} Minimum capacity.
- */
-function getResidualCapacity(graph: Graph, negativeCycle: number[]): number {
-    let residualCapacity = Infinity
-
-    for (let i = 0; i < negativeCycle.length - 1; i++) {
-        const node = graph.getNode(negativeCycle[i])
-        const arc = node.getArc(negativeCycle[i + 1])
-
-        if (arc.flow < residualCapacity) {
-            residualCapacity = arc.flow
-        }
-    }
-
-    return residualCapacity
-}
-
-/**
- * Augments the path in the graph updating the flow of the arcs.
- * Time complexity: O(n).
- * @param {Graph} Graph containing the path.
- * @param {number[]} Path of the nodes.
- * @param {number} Capacity to carry in the path.
- */
-function sendFlow(graph: Graph, negativeCycle: number[], flow: number) {
-    for (let i = 0; i < negativeCycle.length - 1; i++) {
-        const node = graph.getNode(negativeCycle[i])
-        const arc = node.getArc(negativeCycle[i + 1])
-        const adjacentNode = graph.getNode(arc.head)
-
-        if (arc.flow === flow) {
-            node.removeArc(adjacentNode.id)
-        } else {
-            arc.flow -= flow
-        }
-
-        if (!adjacentNode.hasArc(node.id)) {
-            adjacentNode.addArc(new Arc(node.id, -arc.cost, arc.capacity, flow))
-        } else {
-            const reverseArc = adjacentNode.getArc(node.id)
-
-            reverseArc.flow += flow
-        }
-    }
 }
