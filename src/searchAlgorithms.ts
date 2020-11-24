@@ -6,11 +6,11 @@ import { retrievePath } from "./utils"
  * Modified version of the Breadth-First Search algorithm to identify
  * a specific directed path between a source node and a sink node.
  * The algorithm return an array with the nodes of the path.
- * Time complexity: O(n + m).
- * @param {Graph} Graph to visit.
- * @param {number} Sink node of the path.
- * @param {number} Source node of the path.
- * @returns {number[] | undefined} Path between source node and sink node.
+ * Time complexity: O(n + m) = O(m).
+ * @param {Graph} The graph to visit.
+ * @param {number} The sink node of the path.
+ * @param {number} The source node of the path.
+ * @returns {number[] | undefined} The path between source node and sink node.
  */
 export function bfs(graph: Graph, sourceNodeId: number, sinkNodeId: number): number[] | undefined {
     // Contains the visited nodes with their predecessor nodes.
@@ -52,11 +52,11 @@ export function bfs(graph: Graph, sourceNodeId: number, sinkNodeId: number): num
  * Modified version of the Depth-First Search algorithm to identify
  * a specific directed path between a source node and a sink node.
  * The algorithm return an array with the nodes of the path.
- * Time complexity: O(n + m).
- * @param {Graph} Graph to visit.
- * @param {number} Sink node of the path.
- * @param {number} Source node of the path.
- * @returns {number[] | undefined} Path between source node and sink node.
+ * Time complexity: O(n + m) = O(m).
+ * @param {Graph} The graph to visit.
+ * @param {number} The sink node of the path.
+ * @param {number} The source node of the path.
+ * @returns {number[] | undefined} The path between source node and sink node.
  */
 export function dfs(graph: Graph, sourceNodeId: number, sinkNodeId: number): number[] | undefined {
     // Contains the visited nodes with their predecessor nodes.

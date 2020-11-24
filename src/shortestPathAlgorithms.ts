@@ -2,13 +2,12 @@ import Graph from "./dataStructures/graph"
 import { retrievePath } from "./utils"
 
 /**
- * The Bellman–Ford algorithm is an algorithm to find shortest paths
- * of a directed graph. In this implementation the algorithm detects
- * and returns negative cycles.
+ * The Bellman–Ford algorithm finds the shortest paths of a directed graph.
+ * In this implementation the algorithm is used to detect negative cycles.
  * Time complexity: O(n * m).
- * @param {Graph} Graph to visit.
- * @param {number} Source node.
- * @returns {number[] | undefined} Path of the negative cycle.
+ * @param {Graph} The graph to visit.
+ * @param {number} The source node.
+ * @returns {number[] | undefined} The path of the negative cycle.
  */
 export function bellmanFord(graph: Graph, sourceNodeId: number): number[] | undefined {
     const distances = new Map<number, number>()
