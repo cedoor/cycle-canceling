@@ -38,7 +38,7 @@
         "test": "jest --coverage",
         "test:watch": "jest --coverage --watch",
         "test:prod": "npm run lint && npm run test -- --no-cache",
-        "docs:publish": "cp CNAME docs && cp .travis.yml docs && touch docs/.nojekyll && gh-pages -d docs -m \"[docs] update documentation website\" -t",
+        "docs:publish": "cp CNAME docs && cp .travis.yml docs && touch docs/.nojekyll && gh-pages -d docs -m \"docs: update documentation website\" -t",
         "report-coverage": "cat ./coverage/lcov.info | coveralls",
         "commit": "git-cz",
         "precommit": "lint-staged",
