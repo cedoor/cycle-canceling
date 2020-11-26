@@ -1,59 +1,127 @@
 {
     "name": "cycle-canceling",
     "version": "0.1.0",
-    "description": "TypeScript implementation of cycle-canceling algorithm.",
-    "homepage": "https://github.com/cedoor/cycle-canceling#readme",
-    "repository": "git@github.com:cedoor/cycle-canceling.git",
-    "bugs": {
-        "url": "https://github.com/cedoor/cycle-canceling/issues"
-    },
-    "author": {
-        "name": "Omar Desogus",
-        "email": "me@cedoor.dev",
-        "url": "https://cedoor.dev"
-    },
-    "license": "MIT",
-    "main": "dist/cycleCanceling.js",
-    "module": "dist/cycleCanceling.js",
-    "types": "dist/cycleCanceling.d.js",
-    "files": [
-        "dist/",
-        "src/",
-        "LICENSE",
-        "README.md"
-    ],
+    "description": "TypeScript implementation of the cycle-canceling algorithm.",
     "keywords": [
         "typescript",
         "cycle-canceling",
         "implementation",
         "javascript"
     ],
+    "main": "dist/cycleCanceling.umd.js",
+    "module": "dist/cycleCanceling.es5.js",
+    "types": "dist/types/index.d.ts",
+    "files": [
+        "dist/",
+        "src/",
+        "LICENSE",
+        "README.md"
+    ],
+    "author": {
+        "name": "Omar Desogus",
+        "email": "me@cedoor.dev",
+        "url": "https://cedoor.dev"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:cedoor/cycle-canceling.git"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=6.0.0"
+    },
     "scripts": {
-        "lint:fix": "prettier --write 'src/**/*.ts' 'test/**/*.ts' && eslint 'src/**/*.ts' 'test/**/*.ts' --fix",
+        "start": "rollup -c rollup.config.ts -w",
         "lint": "eslint 'src/**/*.ts' 'test/**/*.ts'",
-        "test": "mocha --exit --recursive 'test/**/*.test.ts'",
-        "build": "rollup -c && tsc -d --emitDeclarationOnly --outFile dist/cycleCanceling.js",
-        "docs": "rm -fr docs && typedoc --out docs src && cp CNAME docs && cp .travis.yml docs && touch docs/.nojekyll",
-        "docs:publish": "gh-pages -d docs -m \"[docs] update documentation website\" -t"
+        "prebuild": "rimraf dist docs",
+        "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
+        "test": "jest --coverage",
+        "test:watch": "jest --coverage --watch",
+        "test:prod": "npm run lint && npm run test -- --no-cache",
+        "docs:publish": "cp CNAME docs && cp .travis.yml docs && touch docs/.nojekyll && gh-pages -d docs -m \"[docs] update documentation website\" -t",
+        "report-coverage": "cat ./coverage/lcov.info | coveralls",
+        "commit": "git-cz",
+        "precommit": "lint-staged",
+        "travis-deploy-once": "travis-deploy-once"
+    },
+    "lint-staged": {
+        "{src,test}/**/*.ts": [
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "node_modules/cz-conventional-changelog"
+        }
+    },
+    "jest": {
+        "transform": {
+            ".(ts|tsx)": "ts-jest"
+        },
+        "testEnvironment": "node",
+        "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ],
+        "coveragePathIgnorePatterns": [
+            "/node_modules/",
+            "/test/"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "branches": 90,
+                "functions": 95,
+                "lines": 95,
+                "statements": 95
+            }
+        },
+        "collectCoverageFrom": [
+            "src/*.{js,ts}"
+        ]
+    },
+    "prettier": {
+        "semi": false,
+        "arrowParens": "always",
+        "trailingComma": "none"
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
     },
     "devDependencies": {
-        "@rollup/plugin-typescript": "^6.1.0",
-        "@types/chai": "4.2.14",
-        "@types/fs-extra": "9.0.4",
-        "@types/mocha": "8.0.4",
-        "@types/node": "14.14.7",
-        "@typescript-eslint/eslint-plugin": "4.8.1",
-        "@typescript-eslint/parser": "4.8.1",
-        "chai": "4.2.0",
-        "eslint": "7.13.0",
-        "eslint-config-prettier": "6.15.0",
+        "@commitlint/cli": "^11.0.0",
+        "@commitlint/config-conventional": "^11.0.0",
+        "@rollup/plugin-commonjs": "^16.0.0",
+        "@rollup/plugin-json": "^4.1.0",
+        "@rollup/plugin-node-resolve": "^10.0.0",
+        "@types/jest": "^26.0.15",
+        "@types/node": "^14.14.10",
+        "@typescript-eslint/eslint-plugin": "^4.8.2",
+        "@typescript-eslint/parser": "^4.8.2",
+        "colors": "^1.4.0",
+        "commitizen": "^4.2.2",
+        "coveralls": "^3.1.0",
+        "cz-conventional-changelog": "^3.3.0",
+        "eslint": "^7.14.0",
+        "eslint-config-prettier": "^6.15.0",
         "gh-pages": "^3.1.0",
-        "mocha": "8.2.1",
-        "prettier": "2.1.2",
+        "jest": "^26.6.3",
+        "jest-config": "^26.6.3",
+        "lint-staged": "^10.5.2",
+        "lodash.camelcase": "^4.3.0",
+        "prettier": "^2.2.0",
+        "rimraf": "^2.6.2",
         "rollup": "^2.33.3",
-        "ts-node": "9.0.0",
-        "tslib": "^2.0.3",
+        "rollup-plugin-sourcemaps": "^0.6.3",
+        "rollup-plugin-typescript2": "^0.29.0",
+        "travis-deploy-once": "^5.0.9",
+        "ts-jest": "^26.4.4",
+        "ts-node": "^9.0.0",
         "typedoc": "^0.19.2",
-        "typescript": "4.0.5"
+        "typescript": "^4.1.2"
     }
 }

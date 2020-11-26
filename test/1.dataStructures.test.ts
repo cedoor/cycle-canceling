@@ -1,4 +1,3 @@
-import { assert } from "chai"
 import { readFileSync } from "fs"
 import Graph, { Arc, Node } from "../src/dataStructures/graph"
 import Queue from "../src/dataStructures/queue"
@@ -8,15 +7,15 @@ describe("Data structures", () => {
         const queue = new Queue()
 
         it("Initial queue should be empty", () => {
-            assert.equal(queue.size(), 0)
+            expect(queue.size()).toBe(0)
         })
 
         it("Should enqueue and dequeue a value", () => {
             queue.enqueue(1)
 
-            assert.equal(queue.size(), 1)
-            assert.equal(queue.dequeue(), 1)
-            assert.equal(queue.size(), 0)
+            expect(queue.size()).toBe(1)
+            expect(queue.dequeue()).toBe(1)
+            expect(queue.size()).toBe(0)
         })
 
         it("Should peek a value", () => {
@@ -24,8 +23,8 @@ describe("Data structures", () => {
 
             const value = queue.peek()
 
-            assert.equal(value, 1)
-            assert.equal(queue.size(), 1)
+            expect(value).toBe(1)
+            expect(queue.size()).toBe(1)
         })
     })
 
@@ -33,7 +32,7 @@ describe("Data structures", () => {
         it("Should create an empty graph", () => {
             const graph = new Graph()
 
-            assert.deepEqual(graph.size(), 0)
+            expect(graph.size()).toBe(0)
         })
 
         it("Should add, remove and modify nodes in a graph", () => {
@@ -46,15 +45,15 @@ describe("Data structures", () => {
             graph.addNode(node1)
             graph.addNode(node2)
 
-            assert.deepEqual(graph.size(), 2)
-            assert.deepEqual(graph.getNode(1), node1)
-            assert.deepEqual(graph.getNode(2).balance, 0)
+            expect(graph.size()).toBe(2)
+            expect(graph.getNode(1)).toBe(node1)
+            expect(graph.getNode(2).balance).toBe(0)
 
             graph.removeNode(2)
 
-            assert.throw(() => graph.getNode(2))
-            assert.throw(() => graph.addNode(node1))
-            assert.throw(() => graph.removeNode(2))
+            expect(() => graph.getNode(2)).toThrow()
+            expect(() => graph.addNode(node1)).toThrow()
+            expect(() => graph.removeNode(2)).toThrow()
         })
 
         it("Should add, remove and modify arcs in a node", () => {
@@ -72,23 +71,23 @@ describe("Data structures", () => {
             node1.addArc(arc1)
             node2.addArc(arc2)
 
-            assert.deepEqual(node1.size(), 1)
-            assert.deepEqual(node1.getArc(2).cost, 10)
-            assert.deepEqual(node2.getArc(1).head, node1.id)
+            expect(node1.size()).toBe(1)
+            expect(node1.getArc(2).cost).toBe(10)
+            expect(node2.getArc(1).head).toBe(node1.id)
 
             node1.removeArc(2)
 
-            assert.throw(() => node1.getArc(2))
-            assert.throw(() => node2.addArc(arc2))
-            assert.throw(() => node1.removeArc(2))
+            expect(() => node1.getArc(2)).toThrow()
+            expect(() => node2.addArc(arc2)).toThrow()
+            expect(() => node1.removeArc(2)).toThrow()
         })
 
         it("Should create a graph using external graph data", () => {
             const graphData = JSON.parse(readFileSync("./data/graph1.json", "utf8"))
             const graph = new Graph(graphData)
 
-            assert.isAtLeast(graph.size(), 0)
-            assert.deepEqual(graph.checkIntegrity(), true)
+            expect(graph.size()).toBeGreaterThan(0)
+            expect(graph.checkIntegrity()).toBeTruthy()
         })
     })
 })

@@ -1,18 +1,18 @@
 language: node_js
 cache:
-  yarn: true
   directories:
-    - node_modules
+    - ~/.npm
 notifications:
   email: false
 node_js:
+  - '10'
+  - '11'
   - '12'
-before_script:
 script:
-  - yarn run lint && yarn run test
+  - npm run test:prod && npm run build
 after_success:
-install:
-  - yarn install
+  - npm run travis-deploy-once "npm run report-coverage"
+  - if [ "$TRAVIS_BRANCH" = "main" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run travis-deploy-once "npm run docs:publish"; fi
 branches:
   only:
-  - main
+    main

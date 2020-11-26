@@ -1,4 +1,3 @@
-import { assert } from "chai"
 import { readFileSync } from "fs"
 import Graph from "../src/dataStructures/graph"
 import { edmondsKarp } from "../src/maximumFlowAlgorithms"
@@ -12,7 +11,7 @@ describe("Maximum flow algorithms", () => {
 
             const [, maximumFlow] = edmondsKarp(graph)
 
-            assert.deepEqual(maximumFlow, 25)
+            expect(maximumFlow).toBe(25)
         })
     })
 })

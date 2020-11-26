@@ -1,4 +1,3 @@
-import { assert } from "chai"
 import { readFileSync } from "fs"
 import Graph from "../src/dataStructures/graph"
 import { cycleCanceling } from "../src/minimumCostFlowAlgorithms"
@@ -11,8 +10,8 @@ describe("Minimum cost flow algorithms", () => {
 
             const [maximumFlow, minimumCost] = cycleCanceling(graph)
 
-            assert.deepEqual(maximumFlow, 25)
-            assert.deepEqual(minimumCost, 20)
+            expect(maximumFlow).toBe(25)
+            expect(minimumCost).toBe(20)
         })
 
         it("Should calculate the correct maximum flow and minimum cost of the graph", () => {
@@ -21,8 +20,8 @@ describe("Minimum cost flow algorithms", () => {
 
             const [maximumFlow, minimumCost] = cycleCanceling(graph)
 
-            assert.deepEqual(maximumFlow, 25)
-            assert.deepEqual(minimumCost, 33)
+            expect(maximumFlow).toBe(25)
+            expect(minimumCost).toBe(33)
         })
     })
 })

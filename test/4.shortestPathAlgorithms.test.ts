@@ -1,4 +1,3 @@
-import { assert } from "chai"
 import { readFileSync } from "fs"
 import Graph from "../src/dataStructures/graph"
 import { bellmanFord } from "../src/shortestPathAlgorithms"
@@ -12,7 +11,7 @@ describe("Shortest path algorithms", () => {
 
             const negativeCycle = bellmanFord(graph, 1)
 
-            assert.deepEqual(negativeCycle, [2, 3, 1])
+            expect(negativeCycle).toEqual([2, 3, 1])
         })
     })
 })
