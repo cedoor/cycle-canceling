@@ -8,8 +8,8 @@
         "implementation",
         "javascript"
     ],
-    "main": "dist/cycleCanceling.umd.js",
-    "module": "dist/cycleCanceling.es5.js",
+    "main": "dist/cycleCanceling.js",
+    "module": "dist/cycleCanceling.esm.js",
     "types": "dist/types/index.d.ts",
     "files": [
         "dist/",
@@ -22,6 +22,7 @@
         "email": "me@cedoor.dev",
         "url": "https://cedoor.dev"
     },
+    "homepage": "https://github.com/cedoor/cycle-canceling",
     "repository": {
         "type": "git",
         "url": "git@github.com:cedoor/cycle-canceling.git"
@@ -34,7 +35,7 @@
         "start": "rollup -c rollup.config.ts -w",
         "lint": "eslint 'src/**/*.ts' 'test/**/*.ts'",
         "prebuild": "rimraf dist docs",
-        "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
+        "build": "rollup -c rollup.config.ts && uglifyjs dist/cycleCanceling.js --comments -c -m -o dist/cycleCanceling.min.js &&  typedoc --out docs --target es6 --theme minimal --mode file src",
         "test": "jest --coverage",
         "test:watch": "jest --coverage --watch",
         "test:prod": "npm run lint && npm run test -- --no-cache",
@@ -90,9 +91,6 @@
     "devDependencies": {
         "@commitlint/cli": "^11.0.0",
         "@commitlint/config-conventional": "^11.0.0",
-        "@rollup/plugin-commonjs": "^16.0.0",
-        "@rollup/plugin-json": "^4.1.0",
-        "@rollup/plugin-node-resolve": "^10.0.0",
         "@types/jest": "^26.0.15",
         "@types/node": "^14.14.10",
         "@typescript-eslint/eslint-plugin": "^4.8.2",
@@ -116,6 +114,7 @@
         "ts-jest": "^26.4.4",
         "ts-node": "^9.0.0",
         "typedoc": "^0.19.2",
-        "typescript": "^4.1.2"
+        "typescript": "^4.1.2",
+        "uglifyjs": "^2.4.11"
     }
 }
