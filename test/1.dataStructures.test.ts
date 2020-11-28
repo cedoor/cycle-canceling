@@ -1,5 +1,5 @@
 import { readFileSync } from "fs"
-import Graph, { Arc, Node } from "../src/dataStructures/graph"
+import { Graph, Arc, Node } from "../src"
 import Queue from "../src/dataStructures/queue"
 
 describe("Data structures", () => {

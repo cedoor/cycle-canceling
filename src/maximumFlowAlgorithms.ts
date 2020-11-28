@@ -1,4 +1,4 @@
-import Graph, { Arc, Node } from "./dataStructures/graph"
+import { Graph, Arc, Node, GraphData } from "./dataStructures/graph"
 import { bfs } from "./searchAlgorithms"
 import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
 
@@ -11,10 +11,14 @@ import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
  * using the residual graph. Returns the optimal graph and the maximum flow.
  * The last two nodes in the optimal graph are the source node and the sink node.
  * Time complexity: O(n * m^2).
- * @param {Graph} The graph to visit.
+ * @param {Graph | GraphData} The graph to visit.
  * @returns {[Graph, number]} The optimal flow graph and the maximum flow.
  */
-export function edmondsKarp(graph: Graph): [Graph, number] {
+export function edmondsKarp(graph: Graph | GraphData): [Graph, number] {
+    if (!(graph instanceof Graph)) {
+        graph = new Graph(graph)
+    }
+
     // Extends the graph to calculate the feasible graph.
     const [tSourceNodeId, tSinkNodeId] = extendGraph(graph)
 

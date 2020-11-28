@@ -1,4 +1,4 @@
-import Graph, { Arc } from "./dataStructures/graph"
+import { Graph, Arc } from "./dataStructures/graph"
 
 /**
  * Retrieves the path from the sink node to the source node

@@ -3,7 +3,7 @@
  * graph, in which to add, remove and modify nodes and arcs
  * in constant time. Nodes and arcs are stored in maps.
  */
-export default class Graph {
+export class Graph {
     // Map of the nodes in which the key is the node id.
     private nodes: Map<number, Node>
 

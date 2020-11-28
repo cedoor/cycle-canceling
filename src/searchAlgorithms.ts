@@ -1,4 +1,4 @@
-import Graph from "./dataStructures/graph"
+import { Graph, GraphData } from "./dataStructures/graph"
 import Queue from "./dataStructures/queue"
 import { retrievePath } from "./utils"
 
@@ -7,12 +7,16 @@ import { retrievePath } from "./utils"
  * a specific directed path between a source node and a sink node.
  * The algorithm return an array with the nodes of the path.
  * Time complexity: O(n + m) = O(m).
- * @param {Graph} The graph to visit.
+ * @param {Graph | GraphData} The graph to visit.
  * @param {number} The sink node of the path.
  * @param {number} The source node of the path.
  * @returns {number[] | undefined} The path between source node and sink node.
  */
-export function bfs(graph: Graph, sourceNodeId: number, sinkNodeId: number): number[] | undefined {
+export function bfs(graph: Graph | GraphData, sourceNodeId: number, sinkNodeId: number): number[] | undefined {
+    if (!(graph instanceof Graph)) {
+        graph = new Graph(graph)
+    }
+
     // Contains the visited nodes with their predecessor nodes.
     // Predecessors nodes are useful for reconstructing the path.
     const predecessors = new Map<number, number>()
@@ -53,12 +57,16 @@ export function bfs(graph: Graph, sourceNodeId: number, sinkNodeId: number): num
  * a specific directed path between a source node and a sink node.
  * The algorithm return an array with the nodes of the path.
  * Time complexity: O(n + m) = O(m).
- * @param {Graph} The graph to visit.
+ * @param {Graph | GraphData} The graph to visit.
  * @param {number} The sink node of the path.
  * @param {number} The source node of the path.
  * @returns {number[] | undefined} The path between source node and sink node.
  */
-export function dfs(graph: Graph, sourceNodeId: number, sinkNodeId: number): number[] | undefined {
+export function dfs(graph: Graph | GraphData, sourceNodeId: number, sinkNodeId: number): number[] | undefined {
+    if (!(graph instanceof Graph)) {
+        graph = new Graph(graph)
+    }
+
     // Contains the visited nodes with their predecessor nodes.
     // Predecessors nodes are useful for reconstructing the path.
     const predecessors = new Map<number, number>()

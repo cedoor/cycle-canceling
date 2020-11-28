@@ -1,4 +1,4 @@
-import Graph from "./dataStructures/graph"
+import { Graph, GraphData } from "./dataStructures/graph"
 import { edmondsKarp } from "./maximumFlowAlgorithms"
 import { bellmanFord } from "./shortestPathAlgorithms"
 import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
@@ -11,10 +11,14 @@ import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
  * solve the maximum flow problem in O(n * m^2), and the Bellman-Fort
  * algorithm to find the negative cycles in O(m * n).
  * Time complexity: O (n * m^2 * C * U).
- * @param {Graph} The graph to visit.
+ * @param {Graph | GraphData} The graph to visit.
  * @returns {[number, number]} The maximum flow and the minimum cost.
  */
-export function cycleCanceling(graph: Graph): [number, number] {
+export function cycleCanceling(graph: Graph | GraphData): [number, number] {
+    if (!(graph instanceof Graph)) {
+        graph = new Graph(graph)
+    }
+
     const [optimalGraph, maximumFlow] = edmondsKarp(graph)
     const sourceNodeId = optimalGraph.size() - 1
 
