@@ -1,4 +1,4 @@
-import { Graph, Arc } from "./dataStructures/graph"
+import { Node, Arc, Graph } from "./dataStructures/graph"
 
 /**
  * Retrieves the path from the sink node to the source node
@@ -26,26 +26,30 @@ export function retrievePath(predecessors: Map<number, number>, sourceNodeId: nu
  *
  * Time complexity: O(m).
  * @param {Graph}
+ * @returns {Graph}
  */
-export function setResidualGraph(graph: Graph) {
+export function getResidualGraph(graph: Graph): Graph {
+    const residualGraph = graph.copy()
+
     for (const node of graph.getNodes()) {
         for (const arc of node.getArcs()) {
-            if (arc.cost >= 0) {
-                if (arc.flow > 0) {
-                    const adjacentNode = graph.getNode(arc.head)
-                    const reverseArc = new Arc(node.id, -arc.cost, arc.capacity, arc.flow)
+            if (arc.flow > 0) {
+                const rAdjacentNode = residualGraph.getNode(arc.head)
+                rAdjacentNode.addArc(new Arc(node.id, -arc.cost, arc.capacity, arc.flow))
+            }
 
-                    adjacentNode.addArc(reverseArc)
-                }
+            const rNode = residualGraph.getNode(node.id)
+            const rArc = rNode.getArc(arc.head)
 
-                if (arc.capacity > arc.flow) {
-                    arc.flow = arc.capacity - arc.flow
-                } else {
-                    node.removeArc(arc.head)
-                }
+            if (arc.capacity > arc.flow) {
+                rArc.flow = arc.capacity - arc.flow
+            } else {
+                rNode.removeArc(arc.head)
             }
         }
     }
+
+    return residualGraph
 }
 
 /**
@@ -90,11 +94,39 @@ export function sendFlow(graph: Graph, path: number[], flow: number) {
         }
 
         if (!adjacentNode.hasArc(node.id)) {
-            adjacentNode.addArc(new Arc(node.id, -arc.cost, arc.capacity, flow))
+            adjacentNode.addArc(new Arc(node.id, -arc.cost, arc.capacity, flow, true))
         } else {
             const reverseArc = adjacentNode.getArc(node.id)
 
             reverseArc.flow += flow
         }
     }
+}
+
+/**
+ * Updates the residual graph removing the arcs with positive cost
+ * and returns the optimal graph.
+ * Time complexity: O(m).
+ * @param {Graph} The graph to update.
+ * @returns {Graph} The optimal graph.
+ */
+export function getOptimalGraph(graph: Graph): Graph {
+    const optimalGraph = new Graph()
+
+    for (const node of graph.getNodes()) {
+        optimalGraph.addNode(new Node(node.id, node.balance))
+    }
+
+    for (const node of graph.getNodes()) {
+        for (const arc of node.getArcs()) {
+            if (arc.cost < 0 || Object.is(arc.cost, -0)) {
+                const adjacentNode = optimalGraph.getNode(arc.head)
+                const reverseArc = new Arc(node.id, -arc.cost, arc.capacity, arc.flow)
+
+                adjacentNode.addArc(reverseArc)
+            }
+        }
+    }
+
+    return optimalGraph
 }

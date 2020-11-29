@@ -1,7 +1,7 @@
 import { Graph, GraphData } from "./dataStructures/graph"
 import { edmondsKarp } from "./maximumFlowAlgorithms"
 import { bellmanFord } from "./shortestPathAlgorithms"
-import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
+import { getResidualCapacity, sendFlow, getResidualGraph, getOptimalGraph } from "./utils"
 
 /**
  * The Cycle-Canceling algorithm solves the minimum-cost flow problem
@@ -12,31 +12,29 @@ import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
  * algorithm to find the negative cycles in O(m * n).
  * Time complexity: O (n * m^2 * C * U).
  * @param {Graph | GraphData} The graph to visit.
- * @returns {[number, number]} The maximum flow and the minimum cost.
+ * @returns {[Graph, number, number]} The optimal graph, the maximum flow and the minimum cost.
  */
-export function cycleCanceling(graph: Graph | GraphData): [number, number] {
+export function cycleCanceling(graph: Graph | GraphData): [Graph, number, number] {
     if (!(graph instanceof Graph)) {
         graph = new Graph(graph)
     }
 
-    const [optimalGraph, maximumFlow] = edmondsKarp(graph)
-    const sourceNodeId = optimalGraph.size() - 1
+    const [optimalGraph, maximumFlow, sourceNodeId] = edmondsKarp(graph)
 
-    setResidualGraph(optimalGraph)
-
-    let negativeCycle = bellmanFord(optimalGraph, sourceNodeId)
+    const residualGraph = getResidualGraph(optimalGraph)
+    let negativeCycle = bellmanFord(residualGraph, sourceNodeId)
 
     while (negativeCycle) {
-        const residualCapacity = getResidualCapacity(optimalGraph, negativeCycle)
+        const residualCapacity = getResidualCapacity(residualGraph, negativeCycle)
 
-        sendFlow(optimalGraph, negativeCycle, residualCapacity)
+        sendFlow(residualGraph, negativeCycle, residualCapacity)
 
-        negativeCycle = bellmanFord(optimalGraph, sourceNodeId)
+        negativeCycle = bellmanFord(residualGraph, sourceNodeId)
     }
 
     // Calculates the minimum cost.
     let minimumCost = 0
-    for (const node of optimalGraph.getNodes()) {
+    for (const node of residualGraph.getNodes()) {
         for (const arc of node.getArcs()) {
             if (arc.cost < 0) {
                 minimumCost -= arc.cost
@@ -44,5 +42,5 @@ export function cycleCanceling(graph: Graph | GraphData): [number, number] {
         }
     }
 
-    return [maximumFlow, minimumCost]
+    return [getOptimalGraph(residualGraph), maximumFlow, minimumCost]
 }

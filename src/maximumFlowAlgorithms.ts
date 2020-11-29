@@ -1,6 +1,6 @@
 import { Graph, Arc, Node, GraphData } from "./dataStructures/graph"
 import { bfs } from "./searchAlgorithms"
-import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
+import { getResidualCapacity, sendFlow, getResidualGraph, getOptimalGraph } from "./utils"
 
 /**
  * The Edmonds–Karp algorithm is an implementation of the Ford–Fulkerson
@@ -12,34 +12,34 @@ import { getResidualCapacity, sendFlow, setResidualGraph } from "./utils"
  * The last two nodes in the optimal graph are the source node and the sink node.
  * Time complexity: O(n * m^2).
  * @param {Graph | GraphData} The graph to visit.
- * @returns {[Graph, number]} The optimal flow graph and the maximum flow.
+ * @returns {[Graph, number, number, number]} The optimal flow graph, the maximum flow, the source and sink nodes.
  */
-export function edmondsKarp(graph: Graph | GraphData): [Graph, number] {
+export function edmondsKarp(graph: Graph | GraphData): [Graph, number, number, number] {
     if (!(graph instanceof Graph)) {
         graph = new Graph(graph)
     }
 
     // Extends the graph to calculate the feasible graph.
     const [tSourceNodeId, tSinkNodeId] = extendGraph(graph)
-
-    setResidualGraph(graph)
-
+    const residualGraph = getResidualGraph(graph)
     let maximumflow = 0
-    let path = bfs(graph, tSourceNodeId, tSinkNodeId)
+    let path = bfs(residualGraph, tSourceNodeId, tSinkNodeId)
 
     // While loop stops when there is no path between the source and sink nodes.
     while (path) {
-        const residualCapacity = getResidualCapacity(graph, path)
+        const residualCapacity = getResidualCapacity(residualGraph, path)
 
         maximumflow += residualCapacity
 
-        sendFlow(graph, path, residualCapacity)
+        sendFlow(residualGraph, path, residualCapacity)
 
-        // Searches another path with the new residual graph.
-        path = bfs(graph, tSourceNodeId, tSinkNodeId)
+        // Searches another path with the new residual residualGraph.
+        path = bfs(residualGraph, tSourceNodeId, tSinkNodeId)
     }
 
-    return [getOptimalGraph(graph), maximumflow]
+    const optimalGraph = getOptimalGraph(residualGraph)
+
+    return [optimalGraph, maximumflow, tSourceNodeId, tSinkNodeId]
 }
 
 /**
@@ -56,8 +56,9 @@ export function edmondsKarp(graph: Graph | GraphData): [Graph, number] {
  */
 function extendGraph(graph: Graph): [number, number] {
     const nodes = graph.getNodes()
-    const newSourceNode = new Node(graph.size() + 1, 0)
-    const newSinkNode = new Node(graph.size() + 2, 0)
+    const maxId = Math.max(...nodes.map((node) => node.id))
+    const newSourceNode = new Node(maxId + 1, 0)
+    const newSinkNode = new Node(maxId + 2, 0)
 
     graph.addNode(newSourceNode)
     graph.addNode(newSinkNode)
@@ -77,32 +78,4 @@ function extendGraph(graph: Graph): [number, number] {
     }
 
     return [newSourceNode.id, newSinkNode.id]
-}
-
-/**
- * Updates the residual graph removing the arcs with positive cost
- * and returns the optimal graph.
- * Time complexity: O(m).
- * @param {Graph} The graph to update.
- * @returns {Graph} The optimal graph.
- */
-function getOptimalGraph(graph: Graph): Graph {
-    const optimalGraph = new Graph()
-
-    for (const node of graph.getNodes()) {
-        optimalGraph.addNode(new Node(node.id, node.balance))
-    }
-
-    for (const node of graph.getNodes()) {
-        for (const arc of node.getArcs()) {
-            if (arc.cost < 0 || Object.is(arc.cost, -0)) {
-                const adjacentNode = optimalGraph.getNode(arc.head)
-                const reverseArc = new Arc(node.id, -arc.cost, arc.capacity, arc.flow)
-
-                adjacentNode.addArc(reverseArc)
-            }
-        }
-    }
-
-    return optimalGraph
 }
