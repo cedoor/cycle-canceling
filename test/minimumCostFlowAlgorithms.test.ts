@@ -6,7 +6,7 @@ describe("Minimum cost flow algorithms", () => {
         it("Should calculate the correct maximum flow and minimum cost of the graph", () => {
             const graphData = JSON.parse(readFileSync("./data/graph1.json", "utf8"))
 
-            const [maximumFlow, minimumCost] = cycleCanceling(graphData)
+            const [, maximumFlow, minimumCost] = cycleCanceling(graphData)
 
             expect(maximumFlow).toBe(25)
             expect(minimumCost).toBe(20)
@@ -14,11 +14,18 @@ describe("Minimum cost flow algorithms", () => {
 
         it("Should calculate the correct maximum flow and minimum cost of the graph", () => {
             const graphData = JSON.parse(readFileSync("./data/graph3.json", "utf8"))
-
-            const [maximumFlow, minimumCost] = cycleCanceling(graphData)
+            const [, maximumFlow, minimumCost] = cycleCanceling(graphData)
 
             expect(maximumFlow).toBe(25)
-            expect(minimumCost).toBe(33)
+            expect(minimumCost).toBe(30)
+        })
+
+        it("Should solve correctly the empty container distribution problem", () => {
+            const graphData = JSON.parse(readFileSync("./data/graph4.json", "utf8"))
+            const [, maximumFlow, minimumCost] = cycleCanceling(graphData)
+
+            expect(maximumFlow).toBe(105)
+            expect(minimumCost).toBe(45)
         })
     })
 })
