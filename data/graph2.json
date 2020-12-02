@@ -6,8 +6,7 @@
             {
                 "head": 2,
                 "cost": 2,
-                "capacity": 3,
-                "maximumCapacity": 4
+                "capacity": 4
             }
         ]
     },
@@ -18,14 +17,12 @@
             {
                 "head": 4,
                 "cost": 3,
-                "capacity": 3,
-                "maximumCapacity": 3
+                "capacity": 3
             },
             {
                 "head": 3,
                 "cost": 1,
-                "capacity": 0,
-                "maximumCapacity": 2
+                "capacity": 1
             }
         ]
     },
@@ -36,14 +33,12 @@
             {
                 "head": 4,
                 "cost": 1,
-                "capacity": 1,
-                "maximumCapacity": 5
+                "capacity": 1
             },
             {
                 "head": 1,
                 "cost": -4,
-                "capacity": 3,
-                "maximumCapacity": 4
+                "capacity": 3
             }
         ]
     },

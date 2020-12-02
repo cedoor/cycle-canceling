@@ -1,0 +1,103 @@
+[
+	{
+		"id": 0,
+		"balance": 0,
+		"arcs": [
+			{ "head": 7, "cost": 2, "capacity": 20 },
+			{ "head": 6, "cost": 100, "capacity": 25 },
+			{ "head": 5, "cost": 4, "capacity": 12 },
+			{ "head": 9, "cost": 0, "capacity": 30 }
+		]
+	},
+	{
+		"id": 1,
+		"balance": 0,
+		"arcs": [
+			{ "head": 12, "cost": 3, "capacity": 15 },
+			{ "head": 11, "cost": 100, "capacity": 20 },
+			{ "head": 10, "cost": 5, "capacity": 15 },
+			{ "head": 14, "cost": 0, "capacity": 20 }
+		]
+	},
+	{
+		"id": 2,
+		"balance": 0,
+		"arcs": [
+			{ "head": 17, "cost": 4, "capacity": 10 },
+			{ "head": 16, "cost": 100, "capacity": 15 },
+			{ "head": 15, "cost": 2, "capacity": 8 },
+			{ "head": 19, "cost": 0, "capacity": 20 }
+		]
+	},
+	{
+		"id": 3,
+		"balance": 105,
+		"arcs": [
+			{ "head": 0, "cost": 0, "capacity": 25 },
+			{ "head": 1, "cost": 0, "capacity": 20 },
+			{ "head": 2, "cost": 0, "capacity": 15 },
+			{ "head": 8, "cost": 0, "capacity": 20 },
+			{ "head": 13, "cost": 0, "capacity": 15 },
+			{ "head": 18, "cost": 0, "capacity": 10 }
+		]
+	},
+	{ "id": 4, "balance": -105, "arcs": [] },
+	{ "id": 5, "balance": 0, "arcs": [{ "head": 4, "cost": 0, "capacity": 12 }] },
+	{ "id": 6, "balance": 0, "arcs": [{ "head": 4, "cost": 0, "capacity": 45 }] },
+	{ "id": 7, "balance": 0, "arcs": [{ "head": 4, "cost": 0, "capacity": 20 }] },
+	{
+		"id": 8,
+		"balance": 0,
+		"arcs": [
+			{ "head": 7, "cost": 6, "capacity": 20 },
+			{ "head": 6, "cost": 7, "capacity": 20 }
+		]
+	},
+	{
+		"id": 9,
+		"balance": 0,
+		"arcs": [
+			{ "head": 1, "cost": 3, "capacity": 10 },
+			{ "head": 2, "cost": 3, "capacity": 20 }
+		]
+	},
+	{ "id": 10, "balance": 0, "arcs": [{ "head": 4, "cost": 0, "capacity": 15 }] },
+	{ "id": 11, "balance": 0, "arcs": [{ "head": 4, "cost": 0, "capacity": 35 }] },
+	{ "id": 12, "balance": 0, "arcs": [{ "head": 4, "cost": 0, "capacity": 15 }] },
+	{
+		"id": 13,
+		"balance": 0,
+		"arcs": [
+			{ "head": 12, "cost": 8, "capacity": 15 },
+			{ "head": 11, "cost": 9, "capacity": 15 }
+		]
+	},
+	{
+		"id": 14,
+		"balance": 0,
+		"arcs": [
+			{ "head": 0, "cost": 6, "capacity": 10 },
+			{ "head": 2, "cost": 4, "capacity": 10 }
+		]
+	},
+	{ "id": 15, "balance": 0, "arcs": [{ "head": 4, "cost": 0, "capacity": 8 }] },
+	{ "id": 16, "balance": 0, "arcs": [{ "head": 4, "cost": 0, "capacity": 25 }] },
+	{ "id": 17, "balance": 0, "arcs": [{ "head": 4, "cost": 0, "capacity": 10 }] },
+	{
+		"id": 18,
+		"balance": 0,
+		"arcs": [
+			{ "head": 17, "cost": 4, "capacity": 10 },
+			{ "head": 16, "cost": 5, "capacity": 10 }
+		]
+	},
+	{
+		"id": 19,
+		"balance": 0,
+		"arcs": [
+			{ "head": 0, "cost": 3, "capacity": 12 },
+			{ "head": 1, "cost": 1, "capacity": 8 }
+		]
+	}
+]
+
