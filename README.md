@@ -1,21 +1,27 @@
 <p align="center">
     <h1 align="center">
-        Cycle canceling algorithm <sup>work in progress</sup>
+        Network flow algorithms <sup>work in progress</sup>
     </h1>
-    <p align="center">TypeScript implementation of the cycle-canceling algorithm.</p>
+    <p align="center">TypeScript implementation of some network flow algorithms.</p>
 </p>
     
 <p align="center">
-    <a href="https://github.com/cedoor/cycle-canceling/blob/master/LICENSE" target="_blank">
-        <img src="https://img.shields.io/github/license/cedoor/cycle-canceling.svg?style=flat-square">
+    <a href="https://github.com/cedoor/network-flow-algorithms/blob/master/LICENSE" target="_blank">
+        <img src="https://img.shields.io/github/license/cedoor/network-flow-algorithms.svg?style=flat-square">
     </a>
-    <a href="https://travis-ci.org/github/cedoor/cycle-canceling" target="_blank">
-        <img src="https://img.shields.io/travis/cedoor/cycle-canceling?style=flat-square">
+    <a href="https://travis-ci.org/github/cedoor/network-flow-algorithms" target="_blank">
+        <img src="https://img.shields.io/travis/cedoor/network-flow-algorithms?style=flat-square">
     </a>
-    <img src="https://img.shields.io/github/languages/top/cedoor/cycle-canceling?style=flat-square">
+    <img src="https://img.shields.io/github/languages/top/cedoor/network-flow-algorithms?style=flat-square">
 </p>
 
-The Cycle-Canceling algorithm solves the minimum-cost flow problem starting from a feasible graph obtained with a maximum flow algorithm and, as long as negative cost cycles exist, augment the flow along this cycles. This implementation uses the Edmonds-Karp algorithm to solve the maximum flow problem in O(n * m^2), and the Bellman-Fort algorithm to find the negative cycles in O(m * n). The total time complexity of this implementation is O(n * m^2 * C * U).
+| Algorithm name       | Problem           | Time complexity    |
+|----------------------|-------------------|--------------------|
+| Depth-first search   | Search            | O(n + m)           |
+| Breadth-first search | Search            | O(n + m)           |
+| Bellman-Ford         | Shortest path     | O(n * m)           |
+| Edmonds-Karp         | Maximum flow      | O(n * m^2)         |
+| Cycle-canceling      | Minimum cost flow | O(n * m^2 * C * U) |
 
 ___
 
@@ -26,23 +32,37 @@ ___
   - [Rules](#scroll-rules)
     - [Commits](https://github.com/cedoor/cedoor/tree/main/git#commits-rules)
     - [Branches](https://github.com/cedoor/cedoor/tree/main/git#branch-rules)
-- 🧾 [MIT License](https://github.com/cedoor/cycle-canceling/blob/master/LICENSE)
+- 🧾 [MIT License](https://github.com/cedoor/network-flow-algorithms/blob/master/LICENSE)
 - ☎️ [Contacts](#contacts)
   - [Developers](#developers)
 
 ## Install
 
-With the following installed packages:
-- git
-- node
-- yarn or npm
+### npm or yarn
 
-Clone the repo and install the dependencies from npm.
+You can install utils package with npm:
 
 ```bash
-git clone https://github.com/cedoor/cycle-canceling.git
-cd cycle-canceling
-yarn # or npm i
+npm i @cedoor/nfa --save
+```
+or with yarn:
+
+```bash
+yarn add @cedoor/nfa
+```
+
+### CDN
+
+You can also load it using a `script` tap using [unpkg](https://unpkg.com/):
+
+```bash
+<script src="https://unpkg.com/@cedoor/nfa/"></script>
+```
+
+or [JSDelivr](https://www.jsdelivr.com/):
+
+```bash
+<script src="https://cdn.jsdelivr.net/npm/@cedoor/nfa/"></script>
 ```
 
 ## Usage
