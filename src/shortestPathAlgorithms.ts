@@ -1,4 +1,4 @@
-import { Graph, GraphData } from "./dataStructures/graph"
+import { Arc, Graph, GraphData } from "./dataStructures/graph"
 import { retrievePath } from "./utils"
 
 /**
@@ -27,9 +27,7 @@ export function bellmanFord(graph: Graph | GraphData, sourceNodeId: number): num
 
     for (let i = 0; i < graph.size() - 1; i++) {
         for (const node of nodes) {
-            const arcs = node.getArcs()
-
-            for (const arc of arcs) {
+            for (const arc of node.getArcs()) {
                 const nodeDistance = distances.get(node.id) as number
                 const adjacentNodeDistance = distances.get(arc.head) as number
 
@@ -42,14 +40,12 @@ export function bellmanFord(graph: Graph | GraphData, sourceNodeId: number): num
     }
 
     for (const node of nodes) {
-        const arcs = node.getArcs()
-
-        for (const arc of arcs) {
+        for (const arc of node.getArcs()) {
             const nodeDistance = distances.get(node.id) as number
             const adjacentNodeDistance = distances.get(arc.head) as number
 
             if (adjacentNodeDistance > nodeDistance + arc.cost) {
-                return retrievePath(predecessors, arc.head, node.id)
+                return retrievePath(predecessors, node.id)
             }
         }
     }

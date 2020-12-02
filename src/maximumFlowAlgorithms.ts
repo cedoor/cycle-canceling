@@ -33,13 +33,11 @@ export function edmondsKarp(graph: Graph | GraphData): [Graph, number, number, n
 
         sendFlow(residualGraph, path, residualCapacity)
 
-        // Searches another path with the new residual residualGraph.
+        // Searches another path with the new residual graph.
         path = bfs(residualGraph, tSourceNodeId, tSinkNodeId)
     }
 
-    const optimalGraph = getOptimalGraph(residualGraph)
-
-    return [optimalGraph, maximumflow, tSourceNodeId, tSinkNodeId]
+    return [getOptimalGraph(residualGraph), maximumflow, tSourceNodeId, tSinkNodeId]
 }
 
 /**

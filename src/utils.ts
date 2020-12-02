@@ -1,21 +1,29 @@
 import { Node, Arc, Graph } from "./dataStructures/graph"
 
 /**
- * Retrieves the path from the sink node to the source node
- * using the predecessors map.
+ * Retrieves the path from a node of the graph to the source node
+ * using the predecessors map. If there is a cycle return the cycle path.
  * Time complexity: O(n).
  * @param {Map<number, number>} Predecessor nodes.
- * @param {number} Sink node.
- * @param {number} Source node.
- * @returns {number[]} Path from the source node to the sink node.
+ * @param {number} Node id.
+ * @returns {number[]} Path from a node to the source node or a cycle path.
  */
-export function retrievePath(predecessors: Map<number, number>, sourceNodeId: number, sinkNodeId: number): number[] {
-    // Path starts from the sink node.
-    const path = [sinkNodeId]
+export function retrievePath(predecessors: Map<number, number>, nodeId: number): number[] {
+    // Path starts from a node id.
+    const pathSet = new Set([nodeId])
+    let nextNodeId = predecessors.get(nodeId) as number
 
     // While loop stops when the last path node is the source node.
-    while (path[path.length - 1] !== sourceNodeId) {
-        path.push(predecessors.get(path[path.length - 1]) as number)
+    while (nextNodeId !== -1 && !pathSet.has(nextNodeId)) {
+        pathSet.add(nextNodeId)
+
+        nextNodeId = predecessors.get(nextNodeId) as number
+    }
+
+    let path = Array.from(pathSet.values())
+
+    if (pathSet.has(nextNodeId)) {
+        path = path.slice(path.indexOf(nextNodeId))
     }
 
     // Returns a reversed array, ordered from the source to the sink node.
@@ -94,7 +102,7 @@ export function sendFlow(graph: Graph, path: number[], flow: number) {
         }
 
         if (!adjacentNode.hasArc(node.id)) {
-            adjacentNode.addArc(new Arc(node.id, -arc.cost, arc.capacity, flow, true))
+            adjacentNode.addArc(new Arc(node.id, -arc.cost, arc.capacity, flow))
         } else {
             const reverseArc = adjacentNode.getArc(node.id)
 
@@ -119,11 +127,16 @@ export function getOptimalGraph(graph: Graph): Graph {
 
     for (const node of graph.getNodes()) {
         for (const arc of node.getArcs()) {
+            const adjacentNode = graph.getNode(arc.head)
+
             if (arc.cost < 0 || Object.is(arc.cost, -0)) {
-                const adjacentNode = optimalGraph.getNode(arc.head)
+                const oAdjacentNode = optimalGraph.getNode(arc.head)
                 const reverseArc = new Arc(node.id, -arc.cost, arc.capacity, arc.flow)
 
-                adjacentNode.addArc(reverseArc)
+                oAdjacentNode.addArc(reverseArc)
+            } else if (!adjacentNode.hasArc(node.id)) {
+                const oNode = optimalGraph.getNode(node.id)
+                oNode.addArc(new Arc(arc.head, arc.cost, arc.capacity))
             }
         }
     }

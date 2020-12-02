@@ -19,17 +19,18 @@ export function cycleCanceling(graph: Graph | GraphData): [Graph, number, number
         graph = new Graph(graph)
     }
 
-    const [optimalGraph, maximumFlow, sourceNodeId] = edmondsKarp(graph)
-
+    const [optimalGraph, maximumFlow, , sinkNodeId] = edmondsKarp(graph)
     const residualGraph = getResidualGraph(optimalGraph)
-    let negativeCycle = bellmanFord(residualGraph, sourceNodeId)
+    let negativeCycle = bellmanFord(residualGraph, sinkNodeId)
 
     while (negativeCycle) {
+        negativeCycle.push(negativeCycle[0])
+
         const residualCapacity = getResidualCapacity(residualGraph, negativeCycle)
 
         sendFlow(residualGraph, negativeCycle, residualCapacity)
 
-        negativeCycle = bellmanFord(residualGraph, sourceNodeId)
+        negativeCycle = bellmanFord(residualGraph, sinkNodeId)
     }
 
     // Calculates the minimum cost.

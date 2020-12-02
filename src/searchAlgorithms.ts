@@ -25,7 +25,7 @@ export function bfs(graph: Graph | GraphData, sourceNodeId: number, sinkNodeId: 
     queue.enqueue(sourceNodeId)
 
     // Marks the source node as visited, with 0 as parent node.
-    predecessors.set(sourceNodeId, 0)
+    predecessors.set(sourceNodeId, -1)
 
     // While loop stops when the queue becomes empty.
     while (queue.size()) {
@@ -36,7 +36,7 @@ export function bfs(graph: Graph | GraphData, sourceNodeId: number, sinkNodeId: 
         if (node.hasArc(sinkNodeId)) {
             predecessors.set(sinkNodeId, nodeId)
 
-            return retrievePath(predecessors, sourceNodeId, sinkNodeId)
+            return retrievePath(predecessors, sinkNodeId)
         }
 
         const arcs = graph.getNode(nodeId).getArcs()
@@ -73,7 +73,7 @@ export function dfs(graph: Graph | GraphData, sourceNodeId: number, sinkNodeId: 
     const stack = [sourceNodeId] // Initialize the stack with the source node.
 
     // Marks the source node as visited, with 0 as parent node.
-    predecessors.set(sourceNodeId, 0)
+    predecessors.set(sourceNodeId, -1)
 
     // While loop stops when the stack becomes empty.
     while (stack.length) {
@@ -84,7 +84,7 @@ export function dfs(graph: Graph | GraphData, sourceNodeId: number, sinkNodeId: 
         if (node.hasArc(sinkNodeId)) {
             predecessors.set(sinkNodeId, nodeId)
 
-            return retrievePath(predecessors, sourceNodeId, sinkNodeId)
+            return retrievePath(predecessors, sinkNodeId)
         }
 
         const arcs = node.getArcs()
