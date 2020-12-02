@@ -1,11 +1,10 @@
 import sourceMaps from "rollup-plugin-sourcemaps"
-import camelCase from "lodash.camelcase"
 import typescript from "rollup-plugin-typescript2"
 
 const pkg = require("./package.json")
 
 const banner = `/**
- * @module ${camelCase(pkg.name)}
+ * @module ${pkg.name}
  * @version ${pkg.version}
  * @file ${pkg.description}
  * @copyright ${pkg.author.name} ${new Date().getFullYear()}
@@ -16,7 +15,7 @@ const banner = `/**
 export default {
     input: "src/index.ts",
     output: [
-        { file: pkg.main, name: camelCase(pkg.name), format: "umd", banner, sourcemap: true },
+        { file: pkg.main, name: pkg.name.split("/")[1], format: "umd", banner, sourcemap: true },
         { file: pkg.module, format: "es", banner, sourcemap: true }
     ],
     watch: {
