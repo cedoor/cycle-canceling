@@ -1,4 +1,4 @@
-import { Graph, GraphData } from "./dataStructures/graph"
+import Graph, { GraphData } from "./dataStructures/graph"
 import Queue from "./dataStructures/queue"
 import { retrievePath } from "./utils"
 

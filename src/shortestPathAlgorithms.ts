@@ -1,4 +1,4 @@
-import { Arc, Graph, GraphData } from "./dataStructures/graph"
+import Graph, { GraphData } from "./dataStructures/graph"
 import { retrievePath } from "./utils"
 
 /**

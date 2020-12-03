@@ -1,4 +1,4 @@
-import { Graph, GraphData } from "./dataStructures/graph"
+import Graph, { GraphData } from "./dataStructures/graph"
 import { edmondsKarp } from "./maximumFlowAlgorithms"
 import { bellmanFord } from "./shortestPathAlgorithms"
 import { getResidualCapacity, sendFlow, getResidualGraph, getOptimalGraph } from "./utils"

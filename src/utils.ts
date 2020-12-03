@@ -1,4 +1,6 @@
-import { Node, Arc, Graph } from "./dataStructures/graph"
+import Graph from "./dataStructures/graph"
+import Node from "./dataStructures/node"
+import Arc from "./dataStructures/arc"
 
 /**
  * Retrieves the path from a node of the graph to the source node

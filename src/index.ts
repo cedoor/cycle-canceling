@@ -1,4 +1,6 @@
-export { Graph, Node, Arc } from "./dataStructures/graph"
+export { default as Graph } from "./dataStructures/graph"
+export { default as Node } from "./dataStructures/node"
+export { default as Arc } from "./dataStructures/arc"
 export { cycleCanceling } from "./minimumCostFlowAlgorithms"
 export { edmondsKarp } from "./maximumFlowAlgorithms"
 export { bellmanFord } from "./shortestPathAlgorithms"

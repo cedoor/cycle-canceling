@@ -1,4 +1,6 @@
-import { Graph, Arc, Node, GraphData } from "./dataStructures/graph"
+import Graph, { GraphData } from "./dataStructures/graph"
+import Node from "./dataStructures/node"
+import Arc from "./dataStructures/arc"
 import { bfs } from "./searchAlgorithms"
 import { getResidualCapacity, sendFlow, getResidualGraph, getOptimalGraph } from "./utils"
 
