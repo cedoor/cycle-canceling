@@ -19,14 +19,14 @@
 ## Implemented algorithms
 
 * Search problem
-    * **Depth-first search**: *O(n + m)*
-    * **Breadth-first search**: *O(n + m)*
+    * [**Depth-first search**](https://nfa.cedoor.dev/globals.html#dfs): *O(n + m)* = *O(m)*
+    * [**Breadth-first search**](https://nfa.cedoor.dev/globals.html#bfs): *O(n + m)* = *O(m)*
 * Shortest path problem
-    * **Bellman-Ford**: *O(n * m)*
+    * [**Bellman-Ford**](https://nfa.cedoor.dev/globals.html#bellmanford): *O(n * m)*
 * Maximum flow problem
-    * **Edmonds-Karp**: *O(n * m^2)*
+    * [**Edmonds-Karp**](https://nfa.cedoor.dev/globals.html#edmondskarp): *O(n * m^2)*
 * Minimum-cost flow problem
-    * **Cycle-canceling**: *O(n * m^2 * C * U)*
+    * [**Cycle-canceling**](https://nfa.cedoor.dev/globals.html#cyclecanceling): *O(n * m^2 * C * U)*
     
 Where: 
 * n: n° of nodes,
