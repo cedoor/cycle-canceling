@@ -1,7 +1,7 @@
-import Graph, { GraphData } from "./dataStructures/graph"
-import { edmondsKarp } from "./maximumFlowAlgorithms"
-import { bellmanFord } from "./shortestPathAlgorithms"
-import { getResidualCapacity, sendFlow, getResidualGraph, getOptimalGraph } from "./utils"
+import Graph, { GraphData } from "../dataStructures/graph"
+import edmondsKarp from "../maximumFlowAlgorithms/edmondsKarp"
+import bellmanFord from "../shortestPathAlgorithms/bellmanFord"
+import { getResidualCapacity, sendFlow, getResidualGraph, getOptimalGraph } from "../utils"
 
 /**
  * The Cycle-Canceling algorithm solves the minimum-cost flow problem
@@ -14,7 +14,7 @@ import { getResidualCapacity, sendFlow, getResidualGraph, getOptimalGraph } from
  * @param {Graph | GraphData} The graph to visit.
  * @returns {[Graph, number, number]} The optimal graph, the maximum flow and the minimum cost.
  */
-export function cycleCanceling(graph: Graph | GraphData): [Graph, number, number] {
+export default function cycleCanceling(graph: Graph | GraphData): [Graph, number, number] {
     if (!(graph instanceof Graph)) {
         graph = new Graph(graph)
     }
@@ -23,7 +23,7 @@ export function cycleCanceling(graph: Graph | GraphData): [Graph, number, number
     const residualGraph = getResidualGraph(optimalGraph)
     let negativeCycle = bellmanFord(residualGraph, sinkNodeId)
 
-    while (negativeCycle) {
+    while (negativeCycle && Array.isArray(negativeCycle)) {
         negativeCycle.push(negativeCycle[0])
 
         const residualCapacity = getResidualCapacity(residualGraph, negativeCycle)

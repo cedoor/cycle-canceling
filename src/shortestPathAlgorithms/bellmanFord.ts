@@ -1,15 +1,20 @@
-import Graph, { GraphData } from "./dataStructures/graph"
-import { retrievePath } from "./utils"
+import Graph, { GraphData } from "../dataStructures/graph"
+import { retrievePath } from "../utils"
 
 /**
  * The Bellman–Ford algorithm finds the shortest paths of a directed graph.
- * In this implementation the algorithm is used to detect negative cycles.
+ * The algorithm returns a map with the nodes and their predecessors and a map
+ * with the nodes and their distances from the source node.
+ * If there are negative cycles the algorithm returns the path of the cycle.
  * Time complexity: O(n * m).
  * @param {Graph | GraphData} The graph to visit.
  * @param {number} The source node.
- * @returns {number[] | undefined} The path of the negative cycle.
+ * @returns {[Map<number, number>, Map<number, number>] | number[]} The path of the negative cycle.
  */
-export function bellmanFord(graph: Graph | GraphData, sourceNodeId: number): number[] | undefined {
+export default function bellmanFord(
+    graph: Graph | GraphData,
+    sourceNodeId: number
+): Map<number, [number, number]> | number[] {
     if (!(graph instanceof Graph)) {
         graph = new Graph(graph)
     }
@@ -49,4 +54,6 @@ export function bellmanFord(graph: Graph | GraphData, sourceNodeId: number): num
             }
         }
     }
+
+    return new Map(Array.from(predecessors).map((entry) => [entry[0], [entry[1], distances.get(entry[0]) as number]]))
 }

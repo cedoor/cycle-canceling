@@ -1,22 +1,21 @@
-import Graph, { GraphData } from "./dataStructures/graph"
-import Node from "./dataStructures/node"
-import Arc from "./dataStructures/arc"
-import { bfs } from "./searchAlgorithms"
-import { getResidualCapacity, sendFlow, getResidualGraph, getOptimalGraph } from "./utils"
+import Graph, { GraphData } from "../dataStructures/graph"
+import Node from "../dataStructures/node"
+import Arc from "../dataStructures/arc"
+import bfs from "../searchAlgorithms/bfs"
+import { getResidualCapacity, sendFlow, getResidualGraph, getOptimalGraph } from "../utils"
 
 /**
  * The Edmonds–Karp algorithm is an implementation of the Ford–Fulkerson
  * method for computing the maximum flow between two nodes in a flow network.
- * The algorithm uses the Breadth First Search algorithm to find the
+ * The algorithm uses the Breadth-First Search algorithm to find the
  * augmenting path between the source and the sink node, and increment
  * the maximum flow with the minimum arc capacity for each path
- * using the residual graph. Returns the optimal graph and the maximum flow.
- * The last two nodes in the optimal graph are the source node and the sink node.
+ * using the residual graph. Returns the optimal graph, the maximum flow, the source and the sink nodes.
  * Time complexity: O(n * m^2).
  * @param {Graph | GraphData} The graph to visit.
  * @returns {[Graph, number, number, number]} The optimal flow graph, the maximum flow, the source and sink nodes.
  */
-export function edmondsKarp(graph: Graph | GraphData): [Graph, number, number, number] {
+export default function edmondsKarp(graph: Graph | GraphData): [Graph, number, number, number] {
     if (!(graph instanceof Graph)) {
         graph = new Graph(graph)
     }
@@ -28,7 +27,7 @@ export function edmondsKarp(graph: Graph | GraphData): [Graph, number, number, n
     let path = bfs(residualGraph, tSourceNodeId, tSinkNodeId)
 
     // While loop stops when there is no path between the source and sink nodes.
-    while (path) {
+    while (path && Array.isArray(path)) {
         const residualCapacity = getResidualCapacity(residualGraph, path)
 
         maximumflow += residualCapacity

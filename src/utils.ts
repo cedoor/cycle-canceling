@@ -33,7 +33,8 @@ export function retrievePath(predecessors: Map<number, number>, nodeId: number):
 }
 
 /**
- *
+ * Convert a graph in a residual graph, in which the new arc flow
+ * represent the residual capacity.
  * Time complexity: O(m).
  * @param {Graph}
  * @returns {Graph}
@@ -63,7 +64,7 @@ export function getResidualGraph(graph: Graph): Graph {
 }
 
 /**
- * Returns the arc minimum capacity of the path.
+ * Returns the arc minimum residual capacity of the path.
  * Time complexity: O(n).
  * @param {Graph} Graph containing the path.
  * @param {number[]} Path of the nodes.
