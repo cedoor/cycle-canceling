@@ -6,9 +6,6 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/cedoor" target="_blank">
-        <img alt="Package scope" src="https://img.shields.io/badge/package%20scope-cedoor-yellowgreen?style=flat-square">
-    </a>
     <a href="https://github.com/cedoor/network-flow-algorithms/blob/master/LICENSE" target="_blank">
         <img alt="Github license" src="https://img.shields.io/github/license/cedoor/network-flow-algorithms.svg?style=flat-square">
     </a>
