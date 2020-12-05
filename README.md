@@ -82,13 +82,13 @@ yarn add @cedoor/nfa
 
 You can also load it using a `script` tap using [unpkg](https://unpkg.com/):
 
-```bash
+```html
 <script src="https://unpkg.com/@cedoor/nfa/"></script>
 ```
 
 or [JSDelivr](https://www.jsdelivr.com/):
 
-```bash
+```html
 <script src="https://cdn.jsdelivr.net/npm/@cedoor/nfa/"></script>
 ```
 
