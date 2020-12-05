@@ -21,4 +21,11 @@ jobs:
 
     - run: yarn --frozen-lockfile
     - run: yarn docs
-    - run: yarn docs:publish
+    
+    - name: Github Pages 
+      uses: crazy-max/ghaction-github-pages@v2.2.0
+      with:
+        build_dir: docs
+        commit_message: "docs: update documentation website"
+        fqdn: nfa.cedoor.dev
+        jekyll: false
