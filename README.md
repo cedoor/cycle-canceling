@@ -4,50 +4,51 @@
     </h1>
     <p align="center">TypeScript implementation of some network flow algorithms.</p>
 </p>
-    
+
 <p align="center">
     <a href="https://github.com/cedoor/network-flow-algorithms/blob/master/LICENSE" target="_blank">
         <img src="https://img.shields.io/github/license/cedoor/network-flow-algorithms.svg?style=flat-square">
     </a>
-    <a href="https://travis-ci.org/github/cedoor/network-flow-algorithms" target="_blank">
-        <img src="https://img.shields.io/travis/cedoor/network-flow-algorithms?style=flat-square">
+    <a href="https://github.com/cedoor/network-flow-algorithms/actions?query=workflow%3A%22Node.js+CI%22" target="_blank">
+        <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/Node.js%20CI?style=flat-square">
     </a>
     <img src="https://img.shields.io/github/languages/top/cedoor/network-flow-algorithms?style=flat-square">
 </p>
 
-
 ## Implemented algorithms
 
-* Search problem
-    * [**Depth-first search**](https://nfa.cedoor.dev/globals.html#dfs): *O(n + m)* = *O(m)*
-    * [**Breadth-first search**](https://nfa.cedoor.dev/globals.html#bfs): *O(n + m)* = *O(m)*
-* Shortest path problem
-    * [**Bellman-Ford**](https://nfa.cedoor.dev/globals.html#bellmanford): *O(n * m)*
-* Maximum flow problem
-    * [**Edmonds-Karp**](https://nfa.cedoor.dev/globals.html#edmondskarp): *O(n * m^2)*
-* Minimum-cost flow problem
-    * [**Cycle-canceling**](https://nfa.cedoor.dev/globals.html#cyclecanceling): *O(n * m^2 * C * U)*
-    
-Where: 
-* n: n° of nodes,
-* m: n° of arcs,
-* C: largest magnitude of any arc cost,
-* U: largest magnitude of any supply/demand or finite arc capacity.
+-   Search problem
+    -   [**Depth-first search**](https://nfa.cedoor.dev/globals.html#dfs): _O(n + m)_ = _O(m)_
+    -   [**Breadth-first search**](https://nfa.cedoor.dev/globals.html#bfs): _O(n + m)_ = _O(m)_
+-   Shortest path problem
+    -   [**Bellman-Ford**](https://nfa.cedoor.dev/globals.html#bellmanford): _O(n _ m)\*
+-   Maximum flow problem
+    -   [**Edmonds-Karp**](https://nfa.cedoor.dev/globals.html#edmondskarp): _O(n _ m^2)\*
+-   Minimum-cost flow problem
+    -   [**Cycle-canceling**](https://nfa.cedoor.dev/globals.html#cyclecanceling): _O(n _ m^2 _ C _ U)\*
 
-> The algorithms use the concepts, definitions and notations expressed in the book *Network Flows: Theory, Algorithms, and Applications, Ravindra K. Ahuja, Thomas L. Magnanti, and James B. Orlin*.
+Where:
 
-___
+-   n: n° of nodes,
+-   m: n° of arcs,
+-   C: largest magnitude of any arc cost,
+-   U: largest magnitude of any supply/demand or finite arc capacity.
+
+> The algorithms use the concepts, definitions and notations expressed in the book _Network Flows: Theory, Algorithms, and Applications, Ravindra K. Ahuja, Thomas L. Magnanti, and James B. Orlin_.
+
+---
 
 ## Table of Contents
-- 🛠 [Install](#install)
-- 🕹 [Usage](#usage)
-- 🔬 [Development](#development)
-  - [Rules](#scroll-rules)
-    - [Commits](https://github.com/cedoor/cedoor/tree/main/git#commits-rules)
-    - [Branches](https://github.com/cedoor/cedoor/tree/main/git#branch-rules)
-- 🧾 [MIT License](https://github.com/cedoor/network-flow-algorithms/blob/master/LICENSE)
-- ☎️ [Contacts](#contacts)
-  - [Developers](#developers)
+
+-   🛠 [Install](#install)
+-   🕹 [Usage](#usage)
+-   🔬 [Development](#development)
+    -   [Rules](#scroll-rules)
+        -   [Commits](https://github.com/cedoor/cedoor/tree/main/git#commits-rules)
+        -   [Branches](https://github.com/cedoor/cedoor/tree/main/git#branch-rules)
+-   🧾 [MIT License](https://github.com/cedoor/network-flow-algorithms/blob/master/LICENSE)
+-   ☎️ [Contacts](#contacts)
+    -   [Developers](#developers)
 
 ## Install
 
@@ -58,6 +59,7 @@ You can install utils package with npm:
 ```bash
 npm i @cedoor/nfa --save
 ```
+
 or with yarn:
 
 ```bash
@@ -173,7 +175,9 @@ Algorithms can also take the `graph` parameter as JSON:
 ```
 
 ## Contacts
+
 ### Developers
-* e-mail : me@cedoor.dev
-* github : [@cedoor](https://github.com/cedoor)
-* website : https://cedoor.dev
+
+-   e-mail : me@cedoor.dev
+-   github : [@cedoor](https://github.com/cedoor)
+-   website : https://cedoor.dev
