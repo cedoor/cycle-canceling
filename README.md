@@ -12,6 +12,9 @@
     <a href="https://github.com/cedoor/network-flow-algorithms/actions?query=workflow%3Atest" target="_blank">
         <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/test?label=test&style=flat-square">
     </a>
+    <a href="https://github.com/cedoor/network-flow-algorithms/actions?query=workflow%3Abuild" target="_blank">
+        <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/build?style=flat-square">
+    </a>
     <a href='https://coveralls.io/github/cedoor/network-flow-algorithms?branch=main' target="_blank">
         <img alt="Coveralls github branch" src="https://img.shields.io/coveralls/github/cedoor/network-flow-algorithms/main?style=flat-square">
     </a>
