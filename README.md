@@ -6,19 +6,28 @@
 </p>
 
 <p align="center">
+    <a href="https://github.com/cedoor" target="_blank">
+        <img alt="Package scope" src="https://img.shields.io/badge/package%20scope-cedoor-yellowgreen?style=flat-square">
+    </a>
     <a href="https://github.com/cedoor/network-flow-algorithms/blob/master/LICENSE" target="_blank">
-        <img src="https://img.shields.io/github/license/cedoor/network-flow-algorithms.svg?style=flat-square">
+        <img alt="Github license" src="https://img.shields.io/github/license/cedoor/network-flow-algorithms.svg?style=flat-square">
+    </a>
+    <a href="https://david-dm.org/cedoor/network-flow-algorithms?type=dev" target="_blank">
+        <img alt="David" src="https://img.shields.io/david/dev/cedoor/network-flow-algorithms?style=flat-square">
     </a>
     <a href="https://github.com/cedoor/network-flow-algorithms/actions?query=workflow%3Atest" target="_blank">
-        <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/test?label=test&style=flat-square">
+        <img alt="GitHub Workflow test" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/test?label=test&style=flat-square&logo=github">
     </a>
     <a href="https://github.com/cedoor/network-flow-algorithms/actions?query=workflow%3Abuild" target="_blank">
-        <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/build?style=flat-square">
+        <img alt="GitHub Workflow build" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/build?style=flat-square&logo=github">
     </a>
     <a href='https://coveralls.io/github/cedoor/network-flow-algorithms?branch=main' target="_blank">
-        <img alt="Coveralls github branch" src="https://img.shields.io/coveralls/github/cedoor/network-flow-algorithms/main?style=flat-square">
+        <img alt="Coveralls" src="https://img.shields.io/coveralls/github/cedoor/network-flow-algorithms/main?style=flat-square&logo=coveralls">
     </a>
-    <img src="https://img.shields.io/github/languages/top/cedoor/network-flow-algorithms?style=flat-square">
+    <a href="https://prettier.io/" target="_blank">
+        <img alt="Code style prettier" src="https://img.shields.io/badge/code%20style-prettier-f8bc45?style=flat-square&logo=prettier">
+    </a>
+    <img alt="Repository top language" src="https://img.shields.io/github/languages/top/cedoor/network-flow-algorithms?style=flat-square&logo=typescript">
 </p>
 
 ## Implemented algorithms
