@@ -33,11 +33,11 @@
     -   [**Depth-first search**](https://nfa.cedoor.dev/globals.html#dfs): _O(n + m)_ = _O(m)_
     -   [**Breadth-first search**](https://nfa.cedoor.dev/globals.html#bfs): _O(n + m)_ = _O(m)_
 -   Shortest path problem
-    -   [**Bellman-Ford**](https://nfa.cedoor.dev/globals.html#bellmanford): _O(n _ m)\*
+    -   [**Bellman-Ford**](https://nfa.cedoor.dev/globals.html#bellmanford): _O(n * m)_
 -   Maximum flow problem
-    -   [**Edmonds-Karp**](https://nfa.cedoor.dev/globals.html#edmondskarp): _O(n _ m^2)\*
+    -   [**Edmonds-Karp**](https://nfa.cedoor.dev/globals.html#edmondskarp): _O(n * m^2)_
 -   Minimum-cost flow problem
-    -   [**Cycle-canceling**](https://nfa.cedoor.dev/globals.html#cyclecanceling): _O(n _ m^2 _ C _ U)\*
+    -   [**Cycle-canceling**](https://nfa.cedoor.dev/globals.html#cyclecanceling): _O(n * m^2 * C * U)_
 
 Where:
 
