@@ -45,11 +45,10 @@
         "test": "jest --coverage",
         "test:watch": "jest --coverage --watch",
         "test:prod": "npm run lint && npm run test -- --no-cache",
-        "docs:publish": "cp CNAME docs && cp .travis.yml docs && touch docs/.nojekyll && gh-pages -d docs -m \"docs: update documentation website\" -t",
+        "docs:publish": "cp CNAME docs && touch docs/.nojekyll && gh-pages -d docs -m \"docs: update documentation website\" -t",
         "report-coverage": "cat ./coverage/lcov.info | coveralls",
         "commit": "git-cz",
-        "precommit": "lint-staged",
-        "travis-deploy-once": "travis-deploy-once"
+        "precommit": "lint-staged"
     },
     "lint-staged": {
         "{src,test}/**/*.ts": [
@@ -115,7 +114,6 @@
         "rollup": "^2.33.3",
         "rollup-plugin-sourcemaps": "^0.6.3",
         "rollup-plugin-typescript2": "^0.29.0",
-        "travis-deploy-once": "^5.0.9",
         "ts-jest": "^26.4.4",
         "ts-node": "^9.0.0",
         "typedoc": "^0.19.2",
