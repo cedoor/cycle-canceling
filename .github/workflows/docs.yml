@@ -29,3 +29,5 @@ jobs:
         commit_message: "docs: update documentation website"
         fqdn: nfa.cedoor.dev
         jekyll: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
