@@ -21,6 +21,7 @@ export default function cycleCanceling(graph: Graph | GraphData): [Graph, number
 
     const [optimalGraph, maximumFlow, , sinkNodeId] = edmondsKarp(graph)
     const residualGraph = getResidualGraph(optimalGraph)
+
     let negativeCycle = bellmanFord(residualGraph, sinkNodeId)
 
     while (negativeCycle && Array.isArray(negativeCycle)) {

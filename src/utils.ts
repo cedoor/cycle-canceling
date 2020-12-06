@@ -6,38 +6,39 @@ import Arc from "./dataStructures/arc"
  * Retrieves the path from a node of the graph to the source node
  * using the predecessors map. If there is a cycle return the cycle path.
  * Time complexity: O(n).
- * @param {Map<number, number>} Predecessor nodes.
- * @param {number} Node id.
- * @returns {number[]} Path from a node to the source node or a cycle path.
+ * @param {Map<number, number>} The predecessor nodes.
+ * @param {number} The node to start from.
+ * @returns {number[]} The path from a node to the source node or a cycle path.
  */
 export function retrievePath(predecessors: Map<number, number>, nodeId: number): number[] {
     // Path starts from a node id.
     const pathSet = new Set([nodeId])
     let nextNodeId = predecessors.get(nodeId) as number
 
-    // While loop stops when the last path node is the source node.
+    // The loop stops when the last path node is the source node.
     while (nextNodeId !== -1 && !pathSet.has(nextNodeId)) {
         pathSet.add(nextNodeId)
 
         nextNodeId = predecessors.get(nextNodeId) as number
     }
 
-    let path = Array.from(pathSet.values())
+    let path = Array.from(pathSet)
 
     if (pathSet.has(nextNodeId)) {
+        // Removes all the nodes outside the cycle.
         path = path.slice(path.indexOf(nextNodeId))
     }
 
-    // Returns a reversed array, ordered from the source to the sink node.
+    // Reverses the path.
     return path.reverse()
 }
 
 /**
- * Convert a graph in a residual graph, in which the new arc flow
+ * Converts a graph in a residual graph, in which the new arc flow
  * represent the residual capacity.
  * Time complexity: O(m).
- * @param {Graph}
- * @returns {Graph}
+ * @param {Graph} The original graph.
+ * @returns {Graph} The residual graph.
  */
 export function getResidualGraph(graph: Graph): Graph {
     const residualGraph = graph.copy()
@@ -45,14 +46,16 @@ export function getResidualGraph(graph: Graph): Graph {
     for (const node of graph.getNodes()) {
         for (const arc of node.getArcs()) {
             if (arc.flow > 0) {
+                // Creates the reverse arc with the correct residual capacity.
                 const rAdjacentNode = residualGraph.getNode(arc.head)
                 rAdjacentNode.addArc(new Arc(node.id, -arc.cost, arc.capacity, arc.flow))
             }
 
             const rNode = residualGraph.getNode(node.id)
-            const rArc = rNode.getArc(arc.head)
 
+            // Updates the residual capacity of the arc or removes it.
             if (arc.capacity > arc.flow) {
+                const rArc = rNode.getArc(arc.head)
                 rArc.flow = arc.capacity - arc.flow
             } else {
                 rNode.removeArc(arc.head)
@@ -67,8 +70,8 @@ export function getResidualGraph(graph: Graph): Graph {
  * Returns the arc minimum residual capacity of the path.
  * Time complexity: O(n).
  * @param {Graph} Graph containing the path.
- * @param {number[]} Path of the nodes.
- * @returns {number} Minimum capacity.
+ * @param {number[]} The path of the nodes.
+ * @returns {number} The minimum capacity.
  */
 export function getResidualCapacity(graph: Graph, path: number[]): number {
     let residualCapacity = Infinity
@@ -88,9 +91,9 @@ export function getResidualCapacity(graph: Graph, path: number[]): number {
 /**
  * Augments the path in the graph updating the flow of the arcs.
  * Time complexity: O(n).
- * @param {Graph} Graph containing the path.
- * @param {number[]} Path of the nodes.
- * @param {number} Capacity to carry in the path.
+ * @param {Graph} The graph containing the path.
+ * @param {number[]} The path of the nodes.
+ * @param {number} The flow to send in the path.
  */
 export function sendFlow(graph: Graph, path: number[], flow: number) {
     for (let i = 0; i < path.length - 1; i++) {
@@ -108,15 +111,14 @@ export function sendFlow(graph: Graph, path: number[], flow: number) {
             adjacentNode.addArc(new Arc(node.id, -arc.cost, arc.capacity, flow))
         } else {
             const reverseArc = adjacentNode.getArc(node.id)
-
             reverseArc.flow += flow
         }
     }
 }
 
 /**
- * Updates the residual graph removing the arcs with positive cost
- * and returns the optimal graph.
+ * Convert the residual graph in an optimal graph in which the
+ * residual capacity is converted in flow.
  * Time complexity: O(m).
  * @param {Graph} The graph to update.
  * @returns {Graph} The optimal graph.
