@@ -1,6 +1,6 @@
 {
     "name": "@cedoor/nfa",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "TypeScript implementation of some network flow algorithms.",
     "keywords": [
         "typescript",
