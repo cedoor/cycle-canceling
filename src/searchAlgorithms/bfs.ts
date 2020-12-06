@@ -32,7 +32,7 @@ export default function bfs(
     const queue = new Queue()
     queue.enqueue(sourceNodeId)
 
-    // Marks the source node as visited, with -1 as previous node.
+    // Marks the source node as visited, with -1 as predecessor.
     predecessors.set(sourceNodeId, -1)
 
     // While loop stops when the queue becomes empty.

@@ -30,7 +30,7 @@ export default function dfs(
     const predecessors = new Map<number, number>()
     const stack = [sourceNodeId] // Initialize the stack with the source node.
 
-    // Marks the source node as visited, with 0 as parent node.
+    // Marks the source node as visited, with -1 as predecessor.
     predecessors.set(sourceNodeId, -1)
 
     // While loop stops when the stack becomes empty.
