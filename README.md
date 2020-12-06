@@ -9,14 +9,11 @@
     <a href="https://github.com/cedoor/network-flow-algorithms/blob/master/LICENSE" target="_blank">
         <img alt="Github license" src="https://img.shields.io/github/license/cedoor/network-flow-algorithms.svg?style=flat-square">
     </a>
-    <a href="https://david-dm.org/cedoor/network-flow-algorithms?type=dev" target="_blank">
-        <img alt="David" src="https://img.shields.io/david/dev/cedoor/network-flow-algorithms?style=flat-square">
-    </a>
     <a href="https://github.com/cedoor/network-flow-algorithms/actions?query=workflow%3Atest" target="_blank">
         <img alt="GitHub Workflow test" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/test?label=test&style=flat-square&logo=github">
     </a>
-    <a href="https://github.com/cedoor/network-flow-algorithms/actions?query=workflow%3Abuild" target="_blank">
-        <img alt="GitHub Workflow build" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/build?style=flat-square&logo=github">
+    <a href="https://github.com/cedoor/network-flow-algorithms/actions?query=workflow%3Arelease" target="_blank">
+        <img alt="GitHub Workflow release" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/release?style=flat-square&logo=github">
     </a>
     <a href='https://coveralls.io/github/cedoor/network-flow-algorithms?branch=main' target="_blank">
         <img alt="Coveralls" src="https://img.shields.io/coveralls/github/cedoor/network-flow-algorithms/main?style=flat-square&logo=coveralls">
