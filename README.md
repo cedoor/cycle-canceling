@@ -6,14 +6,14 @@
 </p>
 
 <p align="center">
+    <a href="https://www.npmjs.com/package/@cedoor/nfa" target="_blank">
+        <img alt="NPM version" src="https://img.shields.io/npm/v/@cedoor/nfa?style=flat-square">
+    </a>
     <a href="https://github.com/cedoor/network-flow-algorithms/blob/master/LICENSE" target="_blank">
         <img alt="Github license" src="https://img.shields.io/github/license/cedoor/network-flow-algorithms.svg?style=flat-square">
     </a>
     <a href="https://github.com/cedoor/network-flow-algorithms/actions?query=workflow%3Atest" target="_blank">
         <img alt="GitHub Workflow test" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/test?label=test&style=flat-square&logo=github">
-    </a>
-    <a href="https://github.com/cedoor/network-flow-algorithms/actions?query=workflow%3Arelease" target="_blank">
-        <img alt="GitHub Workflow release" src="https://img.shields.io/github/workflow/status/cedoor/network-flow-algorithms/release?style=flat-square&logo=github">
     </a>
     <a href='https://coveralls.io/github/cedoor/network-flow-algorithms?branch=main' target="_blank">
         <img alt="Coveralls" src="https://img.shields.io/coveralls/github/cedoor/network-flow-algorithms/main?style=flat-square&logo=coveralls">
@@ -22,6 +22,7 @@
         <img alt="Code style prettier" src="https://img.shields.io/badge/code%20style-prettier-f8bc45?style=flat-square&logo=prettier">
     </a>
     <img alt="Repository top language" src="https://img.shields.io/github/languages/top/cedoor/network-flow-algorithms?style=flat-square&logo=typescript">
+    <img alt="NPM bundle size" src="https://img.shields.io/bundlephobia/min/@cedoor/nfa?style=flat-square">
 </p>
 
 ## Implemented algorithms
