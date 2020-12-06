@@ -89,5 +89,14 @@ describe("Data structures", () => {
             expect(graph.size()).toBeGreaterThan(0)
             expect(graph.checkIntegrity()).toBeTruthy()
         })
+
+        it("Should create a copy of a graph", () => {
+            const graphData = JSON.parse(readFileSync("./data/graph1.json", "utf8"))
+            const graph = new Graph(graphData)
+            const graphCopy = graph.copy()
+
+            expect(graph.size()).toEqual(graphCopy.size())
+            graph.getNodes().forEach((node) => expect(node.size()).toEqual(graphCopy.getNode(node.id).size()))
+        })
     })
 })
